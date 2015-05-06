@@ -10,5 +10,13 @@
 
 @implementation Post
 
+-(instancetype)init
+{
+    self.title = nil;
+    self.preview = nil;
+    self.link = nil;
+    
+    return self;
+}
 
 @end

@@ -12,7 +12,9 @@
 @interface Post : NSObject
 
 @property (nonatomic, retain) NSString *title;
-@property (nonatomic, retain) UIImage *mainImage;
+@property (nonatomic, retain) UIImage *preview;
 @property (nonatomic, retain) NSString *link;
+
+-(instancetype)init;
 
 @end

@@ -9,6 +9,7 @@
 #import "NewsListTableView.h"
 #import "AFNetworking.h"
 #import "TFHpple.h"
+#import "Post.h"
 
 @interface NewsListTableView ()
 
@@ -41,11 +42,11 @@
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    [manager GET:@"https://example.com" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
+    [manager GET:@"http://live.goodline.info/guest" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
     {
         [self parser:responseObject];
         NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        NSLog(@"%@", string);
+        //NSLog(@"%@", string);
     }
          failure:^(AFHTTPRequestOperation *operation, NSError *error)
     {
@@ -61,45 +62,52 @@
 
 - (void) parser:(NSData *)responseData
 {
+    NSMutableArray *posts = [[NSMutableArray alloc] init];
+    
     // creating parser and setting Xpath for it.
     TFHpple *dictionaryParser = [TFHpple hppleWithHTMLData:responseData];
     
-    NSString *XpathString = @"//div[@class='list-topic']/";
-    NSArray *posts = [dictionaryParser searchWithXPathQuery:XpathString];
+    NSString *XpathString = @"//article[@class='topic topic-type-topic js-topic out-topic']";
     
-    for (TFHppleElement *post in posts)
+    // getting all nodes with posts from the page
+    NSArray *postNodes = [dictionaryParser searchWithXPathQuery:XpathString];
+    NSLog([NSString stringWithFormat: @"Length: %ld", (long)posts.count]);
+    for (TFHppleElement *postNode in postNodes)
     {
-        TFHppleElement *textPart = [post firstChildWithClassName:@"wraps out-topic"];
-        NSString *title = [[[textPart firstChildWithClassName:@"topic-header"] firstChildWithClassName:@"topic-title word-wrap"] firstChildWithTagName:@"a"].text;
-        NSLog(title);
+        Post *post = [[Post alloc] init];
+        
+        TFHppleElement *textPart = [postNode firstChildWithClassName:@"wraps out-topic"];
+        // getting title of the post
+        TFHppleElement *titleNode = [[[textPart firstChildWithClassName:@"topic-header"] firstChildWithClassName:@"topic-title word-wrap"] firstChildWithTagName:@"a"];
+        post.title = titleNode.text;
+        // getting link to the full version of the post
+        post.link = [titleNode objectForKey:@"href"];
+        NSLog(post.title);
+        NSLog(post.link);
+        
+        // getting an preview image
+        TFHppleElement *imageNode = [[[postNode firstChildWithClassName:@"preview"] firstChildWithTagName:@"a"] firstChildWithTagName:@"img"];
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+        [manager GET:[imageNode objectForKey:@"src"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
+         {
+             NSLog([imageNode objectForKey:@"src"]);
+             post.preview = [[UIImage alloc] initWithData:responseObject];
+         }
+             failure:^(AFHTTPRequestOperation *operation, NSError *error)
+         {
+             // TO DO: SET BLANK IMAGE
+             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error retrieving PICTURE"
+                                                                 message:[error localizedDescription]
+                                                                delegate:nil
+                                                       cancelButtonTitle:@"Ok"
+                                                       otherButtonTitles:nil];
+         }];
+        
+        [posts addObject:post];
+        
     }
     
-    
-    
-    // if dictionaryNodes is empty, then the page is wrong
-    /*
-    if ([dictionaryNodes count] == 0)
-    {
-        /*
-         [self showErrorMessage:NSLocalizedString(@"Word not found!", @"Error, word not found") withError:nil];
-        self.textView.attributedText = [[NSAttributedString alloc] initWithString:@""];
-        [self.searchButton setEnabled:NO];
-        [self.appTitle setHidden: NO];
-         }
-    else
-    {
-        // parsing block of data
-        NSArray *nonTextNodes = [[dictionaryNodes objectAtIndex:0] children];
-        
-        NSMutableAttributedString *parsedText = [[NSMutableAttributedString alloc] init];
-        parsedText = [self goDeepAndFindText:nonTextNodes];
-        
-        self.textView.attributedText = parsedText;
-        // formatting word. First letter in uppercase, other in lowercase.
-        NSString *firstLetter = [self.textField.text substringToIndex:1];
-        self.wordTitle = [[firstLetter uppercaseString] stringByAppendingString:[[self.textField.text lowercaseString] substringFromIndex:1]];
-        */
-
 }
 
 

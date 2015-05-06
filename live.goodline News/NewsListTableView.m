@@ -8,6 +8,7 @@
 
 #import "NewsListTableView.h"
 #import "AFNetworking.h"
+#import "TFHpple.h"
 
 @interface NewsListTableView ()
 
@@ -38,28 +39,67 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    // NSString *string = [NSString stringWithFormat:@"%@weather.php?format=xml", BaseURLString];
-    NSString *string = @"http://live.goodline.info/guest";
-    NSURL *url = [NSURL URLWithString:string];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    if (operation.responseData)
-        parser(operation.responseData);
-    else
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager GET:@"https://example.com" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
     {
+        [self parser:responseObject];
+        NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSLog(@"%@", string);
+    }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error)
+    {
+        //NSError *error;
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error retrieving info"
                                                             message:[error localizedDescription]
                                                            delegate:nil
                                                   cancelButtonTitle:@"Ok"
                                                   otherButtonTitles:nil];
         [alertView show];
-    }
+    }];
 }
 
-- (void) parser(NSData *responseData)
+- (void) parser:(NSData *)responseData
 {
+    // creating parser and setting Xpath for it.
+    TFHpple *dictionaryParser = [TFHpple hppleWithHTMLData:responseData];
     
+    NSString *XpathString = @"//div[@class='list-topic']/";
+    NSArray *posts = [dictionaryParser searchWithXPathQuery:XpathString];
+    
+    for (TFHppleElement *post in posts)
+    {
+        TFHppleElement *textPart = [post firstChildWithClassName:@"wraps out-topic"];
+        NSString *title = [[[textPart firstChildWithClassName:@"topic-header"] firstChildWithClassName:@"topic-title word-wrap"] firstChildWithTagName:@"a"].text;
+        NSLog(title);
+    }
+    
+    
+    
+    // if dictionaryNodes is empty, then the page is wrong
+    /*
+    if ([dictionaryNodes count] == 0)
+    {
+        /*
+         [self showErrorMessage:NSLocalizedString(@"Word not found!", @"Error, word not found") withError:nil];
+        self.textView.attributedText = [[NSAttributedString alloc] initWithString:@""];
+        [self.searchButton setEnabled:NO];
+        [self.appTitle setHidden: NO];
+         }
+    else
+    {
+        // parsing block of data
+        NSArray *nonTextNodes = [[dictionaryNodes objectAtIndex:0] children];
+        
+        NSMutableAttributedString *parsedText = [[NSMutableAttributedString alloc] init];
+        parsedText = [self goDeepAndFindText:nonTextNodes];
+        
+        self.textView.attributedText = parsedText;
+        // formatting word. First letter in uppercase, other in lowercase.
+        NSString *firstLetter = [self.textField.text substringToIndex:1];
+        self.wordTitle = [[firstLetter uppercaseString] stringByAppendingString:[[self.textField.text lowercaseString] substringFromIndex:1]];
+        */
+
 }
 
 

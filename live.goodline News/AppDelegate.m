@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "NewsListTableView.h";
+#import "NewsListTableView.h"
 
 @interface AppDelegate ()
 
@@ -19,11 +19,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-     *viewController = [[ViewController alloc] init];
+     NewsListTableView *newsList = [[NewsListTableView alloc] init];
 
     
     [self.window makeKeyAndVisible];
-    [self.window setRootViewController:viewController];
+    [self.window setRootViewController:newsList];
     
     return YES;
 

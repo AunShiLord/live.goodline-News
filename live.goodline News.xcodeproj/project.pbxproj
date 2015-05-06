@@ -1,0 +1,422 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		84B713D31AF9BF0800F15562 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B713D21AF9BF0800F15562 /* main.m */; };
+		84B713D61AF9BF0800F15562 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B713D51AF9BF0800F15562 /* AppDelegate.m */; };
+		84B713DE1AF9BF0800F15562 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84B713DD1AF9BF0800F15562 /* Images.xcassets */; };
+		84B713ED1AF9BF0800F15562 /* live_goodline_NewsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B713EC1AF9BF0800F15562 /* live_goodline_NewsTests.m */; };
+		84B713F71AF9C50800F15562 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84B713F61AF9C50800F15562 /* Default-568h@2x.png */; };
+		84B713FB1AF9C87A00F15562 /* newsList.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B713F91AF9C87A00F15562 /* newsList.m */; };
+		84B713FC1AF9C87A00F15562 /* newsList.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84B713FA1AF9C87A00F15562 /* newsList.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		84B713E71AF9BF0800F15562 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 84B713C51AF9BF0800F15562 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 84B713CC1AF9BF0800F15562;
+			remoteInfo = "live.goodline News";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		84B713CD1AF9BF0800F15562 /* live.goodline News.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "live.goodline News.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		84B713D11AF9BF0800F15562 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84B713D21AF9BF0800F15562 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		84B713D41AF9BF0800F15562 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		84B713D51AF9BF0800F15562 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		84B713DD1AF9BF0800F15562 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		84B713E61AF9BF0800F15562 /* live.goodline NewsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "live.goodline NewsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		84B713EB1AF9BF0800F15562 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84B713EC1AF9BF0800F15562 /* live_goodline_NewsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = live_goodline_NewsTests.m; sourceTree = "<group>"; };
+		84B713F61AF9C50800F15562 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		84B713F81AF9C87A00F15562 /* newsList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = newsList.h; sourceTree = "<group>"; };
+		84B713F91AF9C87A00F15562 /* newsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = newsList.m; sourceTree = "<group>"; };
+		84B713FA1AF9C87A00F15562 /* newsList.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = newsList.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		84B713CA1AF9BF0800F15562 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84B713E31AF9BF0800F15562 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		84B713C41AF9BF0800F15562 = {
+			isa = PBXGroup;
+			children = (
+				84B713F61AF9C50800F15562 /* Default-568h@2x.png */,
+				84B713CF1AF9BF0800F15562 /* live.goodline News */,
+				84B713E91AF9BF0800F15562 /* live.goodline NewsTests */,
+				84B713CE1AF9BF0800F15562 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		84B713CE1AF9BF0800F15562 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				84B713CD1AF9BF0800F15562 /* live.goodline News.app */,
+				84B713E61AF9BF0800F15562 /* live.goodline NewsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		84B713CF1AF9BF0800F15562 /* live.goodline News */ = {
+			isa = PBXGroup;
+			children = (
+				84B713FD1AF9C95100F15562 /* User Interface */,
+				84B713D41AF9BF0800F15562 /* AppDelegate.h */,
+				84B713D51AF9BF0800F15562 /* AppDelegate.m */,
+				84B713DD1AF9BF0800F15562 /* Images.xcassets */,
+				84B713D01AF9BF0800F15562 /* Supporting Files */,
+			);
+			path = "live.goodline News";
+			sourceTree = "<group>";
+		};
+		84B713D01AF9BF0800F15562 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				84B713D11AF9BF0800F15562 /* Info.plist */,
+				84B713D21AF9BF0800F15562 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		84B713E91AF9BF0800F15562 /* live.goodline NewsTests */ = {
+			isa = PBXGroup;
+			children = (
+				84B713EC1AF9BF0800F15562 /* live_goodline_NewsTests.m */,
+				84B713EA1AF9BF0800F15562 /* Supporting Files */,
+			);
+			path = "live.goodline NewsTests";
+			sourceTree = "<group>";
+		};
+		84B713EA1AF9BF0800F15562 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				84B713EB1AF9BF0800F15562 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		84B713FD1AF9C95100F15562 /* User Interface */ = {
+			isa = PBXGroup;
+			children = (
+				84B713F81AF9C87A00F15562 /* newsList.h */,
+				84B713F91AF9C87A00F15562 /* newsList.m */,
+				84B713FA1AF9C87A00F15562 /* newsList.xib */,
+			);
+			name = "User Interface";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		84B713CC1AF9BF0800F15562 /* live.goodline News */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 84B713F01AF9BF0800F15562 /* Build configuration list for PBXNativeTarget "live.goodline News" */;
+			buildPhases = (
+				84B713C91AF9BF0800F15562 /* Sources */,
+				84B713CA1AF9BF0800F15562 /* Frameworks */,
+				84B713CB1AF9BF0800F15562 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "live.goodline News";
+			productName = "live.goodline News";
+			productReference = 84B713CD1AF9BF0800F15562 /* live.goodline News.app */;
+			productType = "com.apple.product-type.application";
+		};
+		84B713E51AF9BF0800F15562 /* live.goodline NewsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 84B713F31AF9BF0800F15562 /* Build configuration list for PBXNativeTarget "live.goodline NewsTests" */;
+			buildPhases = (
+				84B713E21AF9BF0800F15562 /* Sources */,
+				84B713E31AF9BF0800F15562 /* Frameworks */,
+				84B713E41AF9BF0800F15562 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				84B713E81AF9BF0800F15562 /* PBXTargetDependency */,
+			);
+			name = "live.goodline NewsTests";
+			productName = "live.goodline NewsTests";
+			productReference = 84B713E61AF9BF0800F15562 /* live.goodline NewsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		84B713C51AF9BF0800F15562 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = Admin;
+				TargetAttributes = {
+					84B713CC1AF9BF0800F15562 = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
+					84B713E51AF9BF0800F15562 = {
+						CreatedOnToolsVersion = 6.3.1;
+						TestTargetID = 84B713CC1AF9BF0800F15562;
+					};
+				};
+			};
+			buildConfigurationList = 84B713C81AF9BF0800F15562 /* Build configuration list for PBXProject "live.goodline News" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 84B713C41AF9BF0800F15562;
+			productRefGroup = 84B713CE1AF9BF0800F15562 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				84B713CC1AF9BF0800F15562 /* live.goodline News */,
+				84B713E51AF9BF0800F15562 /* live.goodline NewsTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		84B713CB1AF9BF0800F15562 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84B713DE1AF9BF0800F15562 /* Images.xcassets in Resources */,
+				84B713FC1AF9C87A00F15562 /* newsList.xib in Resources */,
+				84B713F71AF9C50800F15562 /* Default-568h@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84B713E41AF9BF0800F15562 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		84B713C91AF9BF0800F15562 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84B713FB1AF9C87A00F15562 /* newsList.m in Sources */,
+				84B713D61AF9BF0800F15562 /* AppDelegate.m in Sources */,
+				84B713D31AF9BF0800F15562 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84B713E21AF9BF0800F15562 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84B713ED1AF9BF0800F15562 /* live_goodline_NewsTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		84B713E81AF9BF0800F15562 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 84B713CC1AF9BF0800F15562 /* live.goodline News */;
+			targetProxy = 84B713E71AF9BF0800F15562 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		84B713EE1AF9BF0800F15562 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		84B713EF1AF9BF0800F15562 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		84B713F11AF9BF0800F15562 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "live.goodline News/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		84B713F21AF9BF0800F15562 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "live.goodline News/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		84B713F41AF9BF0800F15562 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "live.goodline NewsTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/live.goodline News.app/live.goodline News";
+			};
+			name = Debug;
+		};
+		84B713F51AF9BF0800F15562 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "live.goodline NewsTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/live.goodline News.app/live.goodline News";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		84B713C81AF9BF0800F15562 /* Build configuration list for PBXProject "live.goodline News" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84B713EE1AF9BF0800F15562 /* Debug */,
+				84B713EF1AF9BF0800F15562 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		84B713F01AF9BF0800F15562 /* Build configuration list for PBXNativeTarget "live.goodline News" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84B713F11AF9BF0800F15562 /* Debug */,
+				84B713F21AF9BF0800F15562 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		84B713F31AF9BF0800F15562 /* Build configuration list for PBXNativeTarget "live.goodline NewsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84B713F41AF9BF0800F15562 /* Debug */,
+				84B713F51AF9BF0800F15562 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 84B713C51AF9BF0800F15562 /* Project object */;
+}

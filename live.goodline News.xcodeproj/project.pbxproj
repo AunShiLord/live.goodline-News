@@ -12,8 +12,7 @@
 		84B713DE1AF9BF0800F15562 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84B713DD1AF9BF0800F15562 /* Images.xcassets */; };
 		84B713ED1AF9BF0800F15562 /* live_goodline_NewsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B713EC1AF9BF0800F15562 /* live_goodline_NewsTests.m */; };
 		84B713F71AF9C50800F15562 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84B713F61AF9C50800F15562 /* Default-568h@2x.png */; };
-		84B713FB1AF9C87A00F15562 /* newsList.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B713F91AF9C87A00F15562 /* newsList.m */; };
-		84B713FC1AF9C87A00F15562 /* newsList.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84B713FA1AF9C87A00F15562 /* newsList.xib */; };
+		84B713FF1AF9DC9D00F15562 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B713FE1AF9DC9D00F15562 /* libxml2.dylib */; };
 		96EBBDAB91868A85F08E4842 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DAFFE5A525E95AA237059C8B /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -37,10 +36,8 @@
 		84B713E61AF9BF0800F15562 /* live.goodline NewsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "live.goodline NewsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84B713EB1AF9BF0800F15562 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84B713EC1AF9BF0800F15562 /* live_goodline_NewsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = live_goodline_NewsTests.m; sourceTree = "<group>"; };
-		84B713F61AF9C50800F15562 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		84B713F81AF9C87A00F15562 /* newsList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = newsList.h; sourceTree = "<group>"; };
-		84B713F91AF9C87A00F15562 /* newsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = newsList.m; sourceTree = "<group>"; };
-		84B713FA1AF9C87A00F15562 /* newsList.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = newsList.xib; sourceTree = "<group>"; };
+		84B713F61AF9C50800F15562 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
+		84B713FE1AF9DC9D00F15562 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		D08A50A468C7DAE42EB71213 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		DAFFE5A525E95AA237059C8B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F99ABF61B3DC540A4E5A55E5 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -51,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84B713FF1AF9DC9D00F15562 /* libxml2.dylib in Frameworks */,
 				96EBBDAB91868A85F08E4842 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -77,7 +75,6 @@
 		84B713C41AF9BF0800F15562 = {
 			isa = PBXGroup;
 			children = (
-				84B713F61AF9C50800F15562 /* Default-568h@2x.png */,
 				84B713CF1AF9BF0800F15562 /* live.goodline News */,
 				84B713E91AF9BF0800F15562 /* live.goodline NewsTests */,
 				84B713CE1AF9BF0800F15562 /* Products */,
@@ -102,6 +99,7 @@
 				84B713D41AF9BF0800F15562 /* AppDelegate.h */,
 				84B713D51AF9BF0800F15562 /* AppDelegate.m */,
 				84B713DD1AF9BF0800F15562 /* Images.xcassets */,
+				84B714001AF9DDD500F15562 /* Images */,
 				84B713D01AF9BF0800F15562 /* Supporting Files */,
 			);
 			path = "live.goodline News";
@@ -136,16 +134,22 @@
 		84B713FD1AF9C95100F15562 /* User Interface */ = {
 			isa = PBXGroup;
 			children = (
-				84B713F81AF9C87A00F15562 /* newsList.h */,
-				84B713F91AF9C87A00F15562 /* newsList.m */,
-				84B713FA1AF9C87A00F15562 /* newsList.xib */,
 			);
 			name = "User Interface";
+			sourceTree = "<group>";
+		};
+		84B714001AF9DDD500F15562 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				84B713F61AF9C50800F15562 /* Default-568h@2x.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 		BFCB0EC233C8387C4A1A4BBB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				84B713FE1AF9DC9D00F15562 /* libxml2.dylib */,
 				DAFFE5A525E95AA237059C8B /* libPods.a */,
 			);
 			name = Frameworks;
@@ -234,7 +238,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				84B713DE1AF9BF0800F15562 /* Images.xcassets in Resources */,
-				84B713FC1AF9C87A00F15562 /* newsList.xib in Resources */,
 				84B713F71AF9C50800F15562 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -286,7 +289,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84B713FB1AF9C87A00F15562 /* newsList.m in Sources */,
 				84B713D61AF9BF0800F15562 /* AppDelegate.m in Sources */,
 				84B713D31AF9BF0800F15562 /* main.m in Sources */,
 			);

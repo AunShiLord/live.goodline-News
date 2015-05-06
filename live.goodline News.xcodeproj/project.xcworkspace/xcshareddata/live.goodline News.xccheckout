@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>FBA6F6C8-B575-403B-94B1-96B35EDB7B26</string>
+	<key>IDESourceControlProjectName</key>
+	<string>live.goodline News</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>95528834EDD43E45EEDF3A9F30E54AFEE24CC3E2</key>
+		<string>https://github.com/AunShiLord/live.goodline-News.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>live.goodline News.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>95528834EDD43E45EEDF3A9F30E54AFEE24CC3E2</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/AunShiLord/live.goodline-News.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>95528834EDD43E45EEDF3A9F30E54AFEE24CC3E2</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>95528834EDD43E45EEDF3A9F30E54AFEE24CC3E2</string>
+			<key>IDESourceControlWCCName</key>
+			<string>live.goodline-News</string>
+		</dict>
+	</array>
+</dict>
+</plist>

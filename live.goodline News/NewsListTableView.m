@@ -11,14 +11,20 @@
 #import "TFHpple.h"
 #import "Post.h"
 
-@interface NewsListTableView ()
+@interface NewsListTableView ()<UITableViewDelegate,
+                                UITableViewDataSource>
+
+@property (strong, nonatomic) NSMutableArray *posts;
 
 @end
 
 @implementation NewsListTableView
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -32,7 +38,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self)
     {
-        
+        _posts = [[NSMutableArray alloc] init];
     }
     
     return self;
@@ -45,7 +51,7 @@
     [manager GET:@"http://live.goodline.info/guest" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
     {
         [self parser:responseObject];
-        NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        //NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         //NSLog(@"%@", string);
     }
          failure:^(AFHTTPRequestOperation *operation, NSError *error)
@@ -58,12 +64,12 @@
                                                   otherButtonTitles:nil];
         [alertView show];
     }];
+    
+    [self.tableView reloadData];
 }
 
 - (void) parser:(NSData *)responseData
 {
-    NSMutableArray *posts = [[NSMutableArray alloc] init];
-    
     // creating parser and setting Xpath for it.
     TFHpple *dictionaryParser = [TFHpple hppleWithHTMLData:responseData];
     
@@ -71,7 +77,7 @@
     
     // getting all nodes with posts from the page
     NSArray *postNodes = [dictionaryParser searchWithXPathQuery:XpathString];
-    NSLog([NSString stringWithFormat: @"Length: %ld", (long)posts.count]);
+    //NSLog([NSString stringWithFormat: @"Length: %ld", (long)posts.count]);
     for (TFHppleElement *postNode in postNodes)
     {
         Post *post = [[Post alloc] init];
@@ -82,8 +88,8 @@
         post.title = titleNode.text;
         // getting link to the full version of the post
         post.link = [titleNode objectForKey:@"href"];
-        NSLog(post.title);
-        NSLog(post.link);
+        //NSLog(post.title);
+        //NSLog(post.link);
         
         // getting an preview image
         TFHppleElement *imageNode = [[[postNode firstChildWithClassName:@"preview"] firstChildWithTagName:@"a"] firstChildWithTagName:@"img"];
@@ -91,7 +97,7 @@
         manager.responseSerializer = [AFHTTPResponseSerializer serializer];
         [manager GET:[imageNode objectForKey:@"src"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
          {
-             NSLog([imageNode objectForKey:@"src"]);
+             //NSLog([imageNode objectForKey:@"src"]);
              post.preview = [[UIImage alloc] initWithData:responseObject];
          }
              failure:^(AFHTTPRequestOperation *operation, NSError *error)
@@ -102,11 +108,14 @@
                                                                 delegate:nil
                                                        cancelButtonTitle:@"Ok"
                                                        otherButtonTitles:nil];
+             [alertView show];
          }];
         
-        [posts addObject:post];
+        [_posts addObject:post];
         
     }
+    
+    //[self.tableView reloadData];
     
 }
 
@@ -118,27 +127,34 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [_posts count];
+    //return 10;
 }
 
-/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
-    // Configure the cell...
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    
+    if (cell == nil)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    //cell.textLabel.text = [_posts valueForKeyPath:indexPath.row];
+    cell.textLabel.text = [_posts[indexPath.row] title];
+    cell.imageView.image = [_posts[indexPath.row] preview];
+    //cell.detailTextLabel.text = [[managedObject valueForKey:@"definition"] string];
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.

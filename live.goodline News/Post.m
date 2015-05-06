@@ -12,9 +12,10 @@
 
 -(instancetype)init
 {
-    self.title = nil;
-    self.preview = nil;
-    self.link = nil;
+    _title = nil;
+    _preview = nil;
+    _link = nil;
+    _timePosted = nil;
     
     return self;
 }

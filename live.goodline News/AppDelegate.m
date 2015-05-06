@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "newsList.h";
+#import "NewsListTableView.h";
 
 @interface AppDelegate ()
 

@@ -19,6 +19,7 @@
 @property (strong, nonatomic) NSMutableArray *posts;
 @property (strong, nonatomic) FullNewsViewController *fullNewsViewController;
 @property (strong, nonatomic) UINavigationController *fullNewsNavigationController;
+@property int pageNumber;
 
 @end
 
@@ -32,6 +33,7 @@
     
     _fullNewsViewController = [[FullNewsViewController alloc] init];
     _fullNewsNavigationController = [[UINavigationController alloc] initWithRootViewController:_fullNewsViewController];
+    _pageNumber = 1;
     
 }
 
@@ -46,8 +48,10 @@
     return self;
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     [manager GET:@"http://live.goodline.info/guest" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
@@ -66,17 +70,18 @@
                                                   otherButtonTitles:nil];
         [alertView show];
     }];
+    
 }
 
 - (void) parser:(NSData *)responseData
 {
     // creating parser and setting Xpath for it.
-    TFHpple *dictionaryParser = [TFHpple hppleWithHTMLData:responseData];
+    TFHpple *parser = [TFHpple hppleWithHTMLData:responseData];
     
     NSString *XpathString = @"//article[@class='topic topic-type-topic js-topic out-topic']";
     
     // getting all nodes with posts from the page
-    NSArray *postNodes = [dictionaryParser searchWithXPathQuery:XpathString];
+    NSArray *postNodes = [parser searchWithXPathQuery:XpathString];
     //NSLog([NSString stringWithFormat: @"Length: %ld", (long)posts.count]);
     for (TFHppleElement *postNode in postNodes)
     {
@@ -97,6 +102,7 @@
         // getting an preview image
         TFHppleElement *imageNode = [[[postNode firstChildWithClassName:@"preview"] firstChildWithTagName:@"a"] firstChildWithTagName:@"img"];
         //post.preview = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[imageNode objectForKey:@"src"]]]];
+        /*
         
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[imageNode objectForKey:@"src"]]];
         [NSURLConnection sendAsynchronousRequest:request
@@ -105,6 +111,20 @@
         {
             post.preview = [UIImage imageWithData:data];
         }];
+         */
+        
+        NSURLRequest * urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[imageNode objectForKey:@"src"]]];
+        AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:urlRequest];
+        requestOperation.responseSerializer = [AFImageResponseSerializer serializer];
+        [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
+        {
+            NSLog(@"Response: %@", responseObject);
+            post.preview = responseObject;
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"Image error: %@", error);
+        }];
+        [requestOperation start];
         
         /*
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -131,6 +151,7 @@
     }
     
     [self.tableView reloadData];
+    
     
 }
 
@@ -175,6 +196,43 @@
     cell.subLabel.text = [[_posts[indexPath.row] timePosted] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
     return cell;
+}
+
+// Action performed after tapping on the cell
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // setting link to full post
+    _fullNewsViewController.linkToFullPost = [_posts[indexPath.row] link];
+    [self presentViewController:_fullNewsNavigationController animated:YES completion:nil];
+}
+
+-(void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // issue when dragin to the VERY last cell
+    
+    NSInteger totalRow = [tableView numberOfRowsInSection:indexPath.section];//first get total rows in that section by current indexPath.
+    if(indexPath.row == totalRow -1)
+    {
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        NSLog([NSString stringWithFormat:@"%d",_pageNumber+1]);
+        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+        [manager GET:[NSString stringWithFormat:@"http://live.goodline.info/guest/page%ld", (NSInteger)(_pageNumber+1)] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
+         {
+             [self parser:responseObject];
+             _pageNumber += 1;
+         }
+             failure:^(AFHTTPRequestOperation *operation, NSError *error)
+         {
+             //NSError *error;
+             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error retrieving info"
+                                                                 message:[error localizedDescription]
+                                                                delegate:nil
+                                                       cancelButtonTitle:@"Ok"
+                                                       otherButtonTitles:nil];
+             [alertView show];
+         }];
+
+    }
 }
 
 @end

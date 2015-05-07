@@ -12,6 +12,8 @@
 
 -(instancetype)init
 {
+    self = [super init];
+    
     _title = nil;
     _preview = nil;
     _link = nil;

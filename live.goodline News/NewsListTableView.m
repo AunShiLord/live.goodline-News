@@ -29,8 +29,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.edgesForExtendedLayout=UIRectEdgeNone;
+    self.extendedLayoutIncludesOpaqueBars=NO;
+    self.automaticallyAdjustsScrollViewInsets=NO;
+    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.navigationItem.title = @"Новости";
     
     _fullNewsViewController = [[FullNewsViewController alloc] init];
     _fullNewsNavigationController = [[UINavigationController alloc] initWithRootViewController:_fullNewsViewController];

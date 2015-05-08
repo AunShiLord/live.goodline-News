@@ -25,7 +25,7 @@
     UINavigationController *newListNavigationController = [[UINavigationController alloc] initWithRootViewController:newsList];
     
     [self.window makeKeyAndVisible];
-    [self.window setRootViewController:newsList];
+    [self.window setRootViewController:newListNavigationController];
     
     return YES;
 

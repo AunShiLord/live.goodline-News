@@ -134,18 +134,15 @@
 
 - (NSString *)goDeepAndFindContent:(TFHppleElement *)node
 {
-    NSLog(@"Parent : %@",[node.parent tagName]);
-    NSLog(@"Current: %@",[node tagName]);
+
     NSString *resultString = @"";
     if ([node.tagName isEqual:@"img"])
     {
-        // get image
         resultString = @"AN IMAGE HERE!!!";
         return resultString;
     }
     else if ([node isTextNode])
     {
-        NSLog(@"|%@|", node.content);
         return node.content;
     }
     else
@@ -154,7 +151,6 @@
         {
             resultString = [self goDeepAndFindContent: [node firstChild]];
         }
-        NSLog(@"|%@|", resultString);
     }
     
     return resultString;

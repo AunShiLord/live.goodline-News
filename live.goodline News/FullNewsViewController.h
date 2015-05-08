@@ -11,5 +11,6 @@
 @interface FullNewsViewController : UIViewController
 
 @property (strong, nonatomic) NSString *linkToFullPost;
+@property (strong, nonatomic) NSString *postTitle;
 
 @end

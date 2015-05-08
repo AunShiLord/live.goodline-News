@@ -13,6 +13,8 @@
 @interface FullNewsViewController ()
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UITextView *textView;
+@property int yOffset;
 
 @end
 
@@ -36,8 +38,11 @@
     return self;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
+    _scrollView.scrollEnabled = TRUE;
+    
     
     //_webView = [[UIWebView alloc] initWithFrame:_scrollView.bounds];
     //[_scrollView addSubview:_webView];
@@ -46,6 +51,21 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    // cleaning up scrolViews subviews
+    [[_scrollView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    _yOffset = 0;
+    
+    UITextView *textBlock = [[UITextView alloc] init];
+    textBlock.editable = false;
+    textBlock.scrollEnabled = false;
+    [_scrollView addSubview:textBlock];
+    textBlock.text = _postTitle;
+    // geting the size of the content
+    CGSize size = [textBlock systemLayoutSizeFittingSize:textBlock.contentSize];
+    CGRect textRect = CGRectMake(0, _yOffset, _scrollView.frame.size.width, size.height);
+    textBlock.frame = textRect;
+    _yOffset += size.height;
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     [manager GET:_linkToFullPost parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
@@ -67,21 +87,77 @@
 
 }
 
-- (void) parser: (NSData *)data
+- (void)parser: (NSData *)data
 {
     // creating parser and setting Xpath for it.
     TFHpple *parser = [TFHpple hppleWithHTMLData:data];
     
     NSString *XpathString = @"//div[@class='topic-content text']";
     
-    // getting all nodes with posts from the page
+    // getting a post message
     NSArray *postNodes = [parser searchWithXPathQuery:XpathString];
-    NSLog([NSString stringWithFormat:@"%d", [postNodes count]]);
     TFHppleElement *postNode = postNodes[0];
-    NSLog(postNode.raw);
-    NSLog(@"=======================");
-    NSLog(postNode.text);
+
+    NSMutableString *str = [NSMutableString stringWithString:@""];
+    for (TFHppleElement *i in postNode.children)
+    {
+        //NSLog(@"%@", i.content);
+        NSString *tempString = @"";
+        tempString = [self goDeepAndFindContent:i];
+
+        tempString = [tempString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        //[str appendString:[[self goDeepAndFindContent:i] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+        [str appendString:tempString];
+
+    }
+    UITextView *textBlock = [[UITextView alloc] init];
+    //str = [str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    textBlock.text = str;
+    textBlock.userInteractionEnabled = FALSE;
+    NSLog(@"WHOLE TEXTORINO: ===================================== %@", str);
+    textBlock.editable = FALSE;
+    textBlock.scrollEnabled = FALSE;
+    // geting the size of the content
+    CGSize size = [textBlock systemLayoutSizeFittingSize:textBlock.contentSize];
+    NSLog(@"W: %f, H: %f", size.width, size.height);
+    CGRect textRect = CGRectMake(0, _yOffset, _scrollView.frame.size.width, size.height);
+    //CGRect textRect = CGRectMake(0, _yOffset, _scrollView.frame.size.width, 500);
+    textBlock.frame = textRect;
+    _yOffset += size.height;
+    [_scrollView addSubview:textBlock];
+    _scrollView.contentSize = CGSizeMake(self.view.frame.size.width, _yOffset*2);
+
+    //NSLog(@"%@",str);
+    _textView.text = str;
     
+}
+
+- (NSString *)goDeepAndFindContent:(TFHppleElement *)node
+{
+    NSLog(@"Parent : %@",[node.parent tagName]);
+    NSLog(@"Current: %@",[node tagName]);
+    NSString *resultString = @"";
+    if ([node.tagName isEqual:@"img"])
+    {
+        // get image
+        resultString = @"AN IMAGE HERE!!!";
+        return resultString;
+    }
+    else if ([node isTextNode])
+    {
+        NSLog(@"|%@|", node.content);
+        return node.content;
+    }
+    else
+    {
+        if ([node hasChildren])
+        {
+            resultString = [self goDeepAndFindContent: [node firstChild]];
+        }
+        NSLog(@"|%@|", resultString);
+    }
+    
+    return resultString;
 }
 
 - (IBAction)back

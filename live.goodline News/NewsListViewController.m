@@ -91,7 +91,7 @@
         TFHppleElement *titleNode = [[[textPart firstChildWithClassName:@"topic-header"] firstChildWithClassName:@"topic-title word-wrap"] firstChildWithTagName:@"a"];
         post.title = titleNode.text;
         // getting link to the full version of the post
-        post.link = [titleNode objectForKey:@"href"];
+        post.linkToFullPost = [titleNode objectForKey:@"href"];
 
         // getting time of the post
         post.timePosted = [[textPart firstChildWithClassName:@"topic-header"] firstChildWithTagName:@"time"].text;
@@ -104,7 +104,7 @@
         [manager GET:[imageNode objectForKey:@"src"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
          {
              //NSLog([imageNode objectForKey:@"src"]);
-             post.preview = [[UIImage alloc] initWithData:responseObject];
+             //post.preview = [[UIImage alloc] initWithData:responseObject];
          }
              failure:^(AFHTTPRequestOperation *operation, NSError *error)
          {
@@ -157,7 +157,7 @@
     }
     
     cell.textLabel.text = [_posts[indexPath.row] title];
-    cell.imageView.image = [_posts[indexPath.row] preview];
+    //cell.imageView.image = [_posts[indexPath.row] preview];
     cell.detailTextLabel.text = [_posts[indexPath.row] timePosted];
     
     return cell;

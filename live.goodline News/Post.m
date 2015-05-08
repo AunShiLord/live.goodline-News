@@ -15,8 +15,8 @@
     self = [super init];
     
     _title = nil;
-    _preview = nil;
-    _link = nil;
+    _linkToPreview = nil;
+    _linkToFullPost = nil;
     _timePosted = nil;
     
     return self;

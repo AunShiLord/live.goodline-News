@@ -22,7 +22,7 @@
     
     //NewsListViewController *newsList = [[NewsListViewController alloc] init];
     NewsListTableView *newsList = [[NewsListTableView alloc] init];
-
+    UINavigationController *newListNavigationController = [[UINavigationController alloc] initWithRootViewController:newsList];
     
     [self.window makeKeyAndVisible];
     [self.window setRootViewController:newsList];

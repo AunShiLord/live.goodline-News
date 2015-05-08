@@ -12,8 +12,8 @@
 @interface Post : NSObject
 
 @property (nonatomic, retain) NSString *title;
-@property (nonatomic, retain) UIImage *preview;
-@property (nonatomic, retain) NSString *link;
+@property (nonatomic, retain) NSString *linkToPreview;
+@property (nonatomic, retain) NSString *linkToFullPost;
 @property (nonatomic, retain) NSString *timePosted;
 
 -(instancetype)init;

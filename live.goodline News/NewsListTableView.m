@@ -12,6 +12,7 @@
 #import "Post.h"
 #import "FullNewsViewController.h"
 #import "CustomCell.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface NewsListTableView ()<UITableViewDelegate,
                                 UITableViewDataSource>
@@ -56,6 +57,7 @@
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     [manager GET:@"http://live.goodline.info/guest" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
     {
+        //NSLog(@"RESPONCE: %@", responseObject);
         [self parser:responseObject];
         //NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         //NSLog(@"%@", string);
@@ -82,69 +84,26 @@
     
     // getting all nodes with posts from the page
     NSArray *postNodes = [parser searchWithXPathQuery:XpathString];
-    //NSLog([NSString stringWithFormat: @"Length: %ld", (long)posts.count]);
+
     for (TFHppleElement *postNode in postNodes)
     {
         Post *post = [[Post alloc] init];
         
         TFHppleElement *textPart = [postNode firstChildWithClassName:@"wraps out-topic"];
+        
         // getting title of the post
         TFHppleElement *titleNode = [[[textPart firstChildWithClassName:@"topic-header"] firstChildWithClassName:@"topic-title word-wrap"] firstChildWithTagName:@"a"];
         post.title = titleNode.text;
+        
         // getting link to the full version of the post
-        post.link = [titleNode objectForKey:@"href"];
-        //NSLog(post.title);
-        //NSLog(post.link);
+        post.linkToFullPost = [titleNode objectForKey:@"href"];
+        
         // getting time of the post
         post.timePosted = [[textPart firstChildWithClassName:@"topic-header"] firstChildWithTagName:@"time"].text;
-        //NSLog(post.timePosted);
         
-        // getting an preview image
+        // getting a link to preview image
         TFHppleElement *imageNode = [[[postNode firstChildWithClassName:@"preview"] firstChildWithTagName:@"a"] firstChildWithTagName:@"img"];
-        //post.preview = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[imageNode objectForKey:@"src"]]]];
-        /*
-        
-        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[imageNode objectForKey:@"src"]]];
-        [NSURLConnection sendAsynchronousRequest:request
-                                           queue:[NSOperationQueue mainQueue]
-                               completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
-        {
-            post.preview = [UIImage imageWithData:data];
-        }];
-         */
-        
-        NSURLRequest * urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[imageNode objectForKey:@"src"]]];
-        AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:urlRequest];
-        requestOperation.responseSerializer = [AFImageResponseSerializer serializer];
-        [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
-        {
-            NSLog(@"Response: %@", responseObject);
-            post.preview = responseObject;
-            
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"Image error: %@", error);
-        }];
-        [requestOperation start];
-        
-        /*
-        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-        [manager GET:[imageNode objectForKey:@"src"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
-         {
-             NSLog([imageNode objectForKey:@"src"]);
-             post.preview = [UIImage imageWithData:responseObject];
-         }
-             failure:^(AFHTTPRequestOperation *operation, NSError *error)
-         {
-             // TO DO: SET BLANK IMAGE
-             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error retrieving PICTURE"
-                                                                 message:[error localizedDescription]
-                                                                delegate:nil
-                                                       cancelButtonTitle:@"Ok"
-                                                       otherButtonTitles:nil];
-             [alertView show];
-         }];
-        */
+        post.linkToPreview = [imageNode objectForKey:@"src"];
         
         [_posts addObject:post];
         
@@ -188,11 +147,8 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CustomCell"owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    
-    //cell.textLabel.text = [_posts valueForKeyPath:indexPath.row];
     cell.mainLabel.text = [_posts[indexPath.row] title];
-    cell.imageBlock.image = [_posts[indexPath.row] preview];
-    //cell.subLabel.text = [_posts[indexPath.row] timePosted];
+    [cell.imageBlock setImageWithURL: [NSURL URLWithString:[_posts[indexPath.row] linkToPreview]]];
     cell.subLabel.text = [[_posts[indexPath.row] timePosted] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
     return cell;
@@ -202,8 +158,10 @@
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // setting link to full post
-    _fullNewsViewController.linkToFullPost = [_posts[indexPath.row] link];
+    _fullNewsViewController.linkToFullPost = [_posts[indexPath.row] linkToFullPost];
+    _fullNewsViewController.postTitle = [_posts[indexPath.row] title];
     [self presentViewController:_fullNewsNavigationController animated:YES completion:nil];
+    
 }
 
 -(void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -214,7 +172,7 @@
     if(indexPath.row == totalRow -1)
     {
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-        NSLog([NSString stringWithFormat:@"%d",_pageNumber+1]);
+        NSLog([NSString stringWithFormat:@"%d",(_pageNumber+1)]);
         manager.responseSerializer = [AFHTTPResponseSerializer serializer];
         [manager GET:[NSString stringWithFormat:@"http://live.goodline.info/guest/page%ld", (NSInteger)(_pageNumber+1)] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
          {

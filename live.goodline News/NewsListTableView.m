@@ -30,7 +30,7 @@
 {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor clearColor];
+    self.view.backgroundColor = [UIColor colorWithRed:86/255.0 green:207/255.0 blue:82/255.0 alpha:1.0];
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -93,7 +93,6 @@
     NSArray *postNodes = [parser searchWithXPathQuery:XpathString];
     if (![postNodes count] == 0)
         _pageNumber += 1;
-    NSLog(@"PAGE NUMBER: %d", [postNodes count]);
 
     for (TFHppleElement *postNode in postNodes)
     {

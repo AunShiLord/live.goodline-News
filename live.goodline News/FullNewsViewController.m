@@ -30,7 +30,9 @@
                                                                               style:UIBarButtonItemStyleDone
                                                                              target:self
                                                                              action:@selector(back)];
-        leftBarButtonItem.tintColor = [UIColor colorWithRed:110/255.0 green:177/255.0 blue:219/255.0 alpha:1.0];
+        //leftBarButtonItem.tintColor = [UIColor colorWithRed:110/255.0 green:177/255.0 blue:219/255.0 alpha:1.0];
+        //[self.navigationItem setLeftBarButtonItem:leftBarButtonItem];
+        leftBarButtonItem.tintColor = [UIColor blackColor];
         [self.navigationItem setLeftBarButtonItem:leftBarButtonItem];
         
     }
@@ -43,10 +45,7 @@
     [super viewDidLoad];
     _scrollView.scrollEnabled = TRUE;
     
-    
-    //_webView = [[UIWebView alloc] initWithFrame:_scrollView.bounds];
-    //[_scrollView addSubview:_webView];
-    // Do any additional setup after loading the view from its nib.
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:212/255.0 green:139/255.0 blue:23/255.0 alpha:1.0];
 }
 
 - (void)viewWillAppear:(BOOL)animated

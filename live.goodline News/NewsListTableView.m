@@ -30,13 +30,41 @@
 {
     [super viewDidLoad];
     
+    self.view.backgroundColor = [UIColor clearColor];
+    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.navigationItem.title = @"Новости";
     
-    _fullNewsViewController = [[FullNewsViewController alloc] init];
-    _fullNewsNavigationController = [[UINavigationController alloc] initWithRootViewController:_fullNewsViewController];
-    _pageNumber = 1;
+    self.navigationItem.title = @"Новости";
+    // settin navigation bar color
+    //self.navigationController.navigationBar.translucent = NO;
+    //[self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init]
+    //                                              forBarMetrics:UIBarMetricsDefault];
+    //self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:212/255.0 green:139/255.0 blue:23/255.0 alpha:1.0];
+    
+    // getting information from the page for the first time
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager GET:@"http://live.goodline.info/guest" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         //NSLog(@"RESPONCE: %@", responseObject);
+         [self parser:responseObject];
+         //NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+         //NSLog(@"%@", string);
+     }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         //NSError *error;
+         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error retrieving info"
+                                                             message:[error localizedDescription]
+                                                            delegate:nil
+                                                   cancelButtonTitle:@"Ok"
+                                                   otherButtonTitles:nil];
+         [alertView show];
+     }];
+
+    
     
 }
 
@@ -46,6 +74,12 @@
     if (self)
     {
         _posts = [[NSMutableArray alloc] init];
+        
+        _fullNewsViewController = [[FullNewsViewController alloc] init];
+        _fullNewsNavigationController = [[UINavigationController alloc] initWithRootViewController:_fullNewsViewController];
+        
+        
+        _pageNumber = 1;
     }
     
     return self;
@@ -54,27 +88,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    [manager GET:@"http://live.goodline.info/guest" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
-    {
-        //NSLog(@"RESPONCE: %@", responseObject);
-        [self parser:responseObject];
-        //NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        //NSLog(@"%@", string);
-    }
-         failure:^(AFHTTPRequestOperation *operation, NSError *error)
-    {
-        //NSError *error;
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error retrieving info"
-                                                            message:[error localizedDescription]
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"Ok"
-                                                  otherButtonTitles:nil];
-        [alertView show];
-    }];
-    
 }
 
 - (void) parser:(NSData *)responseData
@@ -176,7 +189,7 @@
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         NSLog([NSString stringWithFormat:@"%d",(_pageNumber+1)]);
         manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-        [manager GET:[NSString stringWithFormat:@"http://live.goodline.info/guest/page%ld", (NSInteger)(_pageNumber+1)] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
+        [manager GET:[NSString stringWithFormat:@"http://live.goodline.info/guest/page%ld", (long)(_pageNumber+1)] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
          {
              [self parser:responseObject];
              _pageNumber += 1;

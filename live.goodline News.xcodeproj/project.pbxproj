@@ -12,17 +12,15 @@
 		84A015B11AF9EE6B0036A9CE /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A015B01AF9EE6B0036A9CE /* Post.m */; };
 		84A015B51AFB090F0036A9CE /* FullNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A015B31AFB090F0036A9CE /* FullNewsViewController.m */; };
 		84A015B61AFB090F0036A9CE /* FullNewsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84A015B41AFB090F0036A9CE /* FullNewsViewController.xib */; };
-		84A015BA1AFB10220036A9CE /* NewsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A015B81AFB10220036A9CE /* NewsListViewController.m */; };
-		84A015BB1AFB10220036A9CE /* NewsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84A015B91AFB10220036A9CE /* NewsListViewController.xib */; };
 		84A015BF1AFB1DAC0036A9CE /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A015BD1AFB1DAC0036A9CE /* CustomCell.m */; };
 		84A015C01AFB1DAC0036A9CE /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84A015BE1AFB1DAC0036A9CE /* CustomCell.xib */; };
 		84B713D31AF9BF0800F15562 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B713D21AF9BF0800F15562 /* main.m */; };
 		84B713D61AF9BF0800F15562 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B713D51AF9BF0800F15562 /* AppDelegate.m */; };
 		84B713DE1AF9BF0800F15562 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84B713DD1AF9BF0800F15562 /* Images.xcassets */; };
 		84B713ED1AF9BF0800F15562 /* live_goodline_NewsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B713EC1AF9BF0800F15562 /* live_goodline_NewsTests.m */; };
-		84B713F71AF9C50800F15562 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84B713F61AF9C50800F15562 /* Default-568h@2x.png */; };
 		84B713FF1AF9DC9D00F15562 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B713FE1AF9DC9D00F15562 /* libxml2.dylib */; };
 		96EBBDAB91868A85F08E4842 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DAFFE5A525E95AA237059C8B /* libPods.a */; };
+		E1A00B491AFF5EFF0008E075 /* Default-568h_2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A00B481AFF5EFF0008E075 /* Default-568h_2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,9 +42,6 @@
 		84A015B21AFB090F0036A9CE /* FullNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullNewsViewController.h; sourceTree = "<group>"; };
 		84A015B31AFB090F0036A9CE /* FullNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullNewsViewController.m; sourceTree = "<group>"; };
 		84A015B41AFB090F0036A9CE /* FullNewsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FullNewsViewController.xib; sourceTree = "<group>"; };
-		84A015B71AFB10220036A9CE /* NewsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsListViewController.h; sourceTree = "<group>"; };
-		84A015B81AFB10220036A9CE /* NewsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsListViewController.m; sourceTree = "<group>"; };
-		84A015B91AFB10220036A9CE /* NewsListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsListViewController.xib; sourceTree = "<group>"; };
 		84A015BC1AFB1DAC0036A9CE /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
 		84A015BD1AFB1DAC0036A9CE /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
 		84A015BE1AFB1DAC0036A9CE /* CustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
@@ -59,10 +54,10 @@
 		84B713E61AF9BF0800F15562 /* live.goodline NewsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "live.goodline NewsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84B713EB1AF9BF0800F15562 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84B713EC1AF9BF0800F15562 /* live_goodline_NewsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = live_goodline_NewsTests.m; sourceTree = "<group>"; };
-		84B713F61AF9C50800F15562 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		84B713FE1AF9DC9D00F15562 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		D08A50A468C7DAE42EB71213 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		DAFFE5A525E95AA237059C8B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1A00B481AFF5EFF0008E075 /* Default-568h_2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h_2x.png"; sourceTree = SOURCE_ROOT; };
 		F99ABF61B3DC540A4E5A55E5 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -134,16 +129,6 @@
 			name = NewsListTableView;
 			sourceTree = "<group>";
 		};
-		84A015C41AFB1DEE0036A9CE /* NewsListViewController */ = {
-			isa = PBXGroup;
-			children = (
-				84A015B71AFB10220036A9CE /* NewsListViewController.h */,
-				84A015B81AFB10220036A9CE /* NewsListViewController.m */,
-				84A015B91AFB10220036A9CE /* NewsListViewController.xib */,
-			);
-			name = NewsListViewController;
-			sourceTree = "<group>";
-		};
 		84B713C41AF9BF0800F15562 = {
 			isa = PBXGroup;
 			children = (
@@ -208,7 +193,6 @@
 			isa = PBXGroup;
 			children = (
 				84A015C31AFB1DDE0036A9CE /* NewsListTableView */,
-				84A015C41AFB1DEE0036A9CE /* NewsListViewController */,
 				84A015C21AFB1DC80036A9CE /* FullNewsViewController */,
 				84A015C11AFB1DB30036A9CE /* CustomCell */,
 			);
@@ -218,7 +202,7 @@
 		84B714001AF9DDD500F15562 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				84B713F61AF9C50800F15562 /* Default-568h@2x.png */,
+				E1A00B481AFF5EFF0008E075 /* Default-568h_2x.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -314,12 +298,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1A00B491AFF5EFF0008E075 /* Default-568h_2x.png in Resources */,
 				84A015C01AFB1DAC0036A9CE /* CustomCell.xib in Resources */,
 				84A015AD1AF9E17E0036A9CE /* NewsListTableView.xib in Resources */,
 				84B713DE1AF9BF0800F15562 /* Images.xcassets in Resources */,
-				84A015BB1AFB10220036A9CE /* NewsListViewController.xib in Resources */,
 				84A015B61AFB090F0036A9CE /* FullNewsViewController.xib in Resources */,
-				84B713F71AF9C50800F15562 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,7 +359,6 @@
 				84A015B51AFB090F0036A9CE /* FullNewsViewController.m in Sources */,
 				84A015BF1AFB1DAC0036A9CE /* CustomCell.m in Sources */,
 				84A015B11AF9EE6B0036A9CE /* Post.m in Sources */,
-				84A015BA1AFB10220036A9CE /* NewsListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,6 +467,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "live.goodline News/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -496,6 +479,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "live.goodline News/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -514,6 +498,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "live.goodline NewsTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/live.goodline News.app/live.goodline News";
@@ -529,6 +514,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "live.goodline NewsTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/live.goodline News.app/live.goodline News";

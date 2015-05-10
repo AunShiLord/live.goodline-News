@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "NewsListViewController.h"
 #import "NewsListTableView.h"
 
 @interface AppDelegate ()
@@ -24,6 +23,7 @@
     NewsListTableView *newsList = [[NewsListTableView alloc] init];
     UINavigationController *newListNavigationController = [[UINavigationController alloc] initWithRootViewController:newsList];
     
+    self.window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-568h_2x.png"]];
     [self.window makeKeyAndVisible];
     [self.window setRootViewController:newListNavigationController];
     

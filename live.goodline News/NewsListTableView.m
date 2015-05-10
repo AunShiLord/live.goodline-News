@@ -36,11 +36,7 @@
     self.tableView.dataSource = self;
     
     self.navigationItem.title = @"Новости";
-    // settin navigation bar color
-    //self.navigationController.navigationBar.translucent = NO;
-    //[self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init]
-    //                                              forBarMetrics:UIBarMetricsDefault];
-    //self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
+
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:248/255.0 green:159/255.0 blue:48/255.0 alpha:1.0];
     
     // getting information from the page for the first time
@@ -53,7 +49,6 @@
      }
          failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
-         //NSError *error;
          UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error retrieving info"
                                                              message:[error localizedDescription]
                                                             delegate:nil
@@ -76,8 +71,7 @@
         _fullNewsViewController = [[FullNewsViewController alloc] init];
         _fullNewsNavigationController = [[UINavigationController alloc] initWithRootViewController:_fullNewsViewController];
         
-        
-        _pageNumber = 1;
+        _pageNumber = 0;
     }
     
     return self;
@@ -97,6 +91,9 @@
     
     // getting all nodes with posts from the page
     NSArray *postNodes = [parser searchWithXPathQuery:XpathString];
+    if (![postNodes count] == 0)
+        _pageNumber += 1;
+    NSLog(@"PAGE NUMBER: %d", [postNodes count]);
 
     for (TFHppleElement *postNode in postNodes)
     {
@@ -125,12 +122,6 @@
     [self.tableView reloadData];
     
     
-}
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
@@ -185,12 +176,10 @@
     if(indexPath.row == totalRow -1)
     {
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-        NSLog([NSString stringWithFormat:@"%d",(_pageNumber+1)]);
         manager.responseSerializer = [AFHTTPResponseSerializer serializer];
         [manager GET:[NSString stringWithFormat:@"http://live.goodline.info/guest/page%ld", (long)(_pageNumber+1)] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
          {
              [self parser:responseObject];
-             _pageNumber += 1;
          }
              failure:^(AFHTTPRequestOperation *operation, NSError *error)
          {

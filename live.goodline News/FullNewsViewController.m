@@ -15,6 +15,7 @@
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
+// y position of very last element in scrollView
 @property int yOffset;
 
 @end
@@ -31,8 +32,7 @@
                                                                               style:UIBarButtonItemStyleDone
                                                                              target:self
                                                                              action:@selector(back)];
-        //leftBarButtonItem.tintColor = [UIColor colorWithRed:110/255.0 green:177/255.0 blue:219/255.0 alpha:1.0];
-        //[self.navigationItem setLeftBarButtonItem:leftBarButtonItem];
+
         leftBarButtonItem.tintColor = [UIColor blackColor];
         [self.navigationItem setLeftBarButtonItem:leftBarButtonItem];
         
@@ -64,8 +64,6 @@
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     [manager GET:_linkToFullPost parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
-         //NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-         //NSLog(@"%@", string);
          [self parser:responseObject];
      }
          failure:^(AFHTTPRequestOperation *operation, NSError *error)
@@ -116,6 +114,7 @@
             [_scrollView addSubview:imageView];
             _yOffset += imageView.frame.size.height;
         }
+        // else appending text variable
         else
         {
             NSAttributedString *tempString = [[NSAttributedString alloc] initWithString:@""];
@@ -133,31 +132,29 @@
         [_scrollView addSubview:textBlock];
         _scrollView.contentSize = CGSizeMake(self.view.frame.size.width, _yOffset);
     }
-
     
 }
 
+// Go deep in nodes and find text content
 - (NSAttributedString *)goDeepAndFindContent:(TFHppleElement *)node
 {
-
-    NSLog(@"Parent : %@", node.parent.tagName);
-    NSLog(@"Current: %@", node.tagName);
     
     NSMutableAttributedString *resultString = [[NSMutableAttributedString alloc] initWithString:@""];
-    //NSString *resultString = @"";
     if ([node isTextNode])
     {
+        // handling titles
         if ([node.parent.tagName characterAtIndex:0] == 'h')
         {
             return [[NSAttributedString alloc] initWithString: [NSString stringWithFormat:@"%@\n", node.content]
                                                    attributes:@{NSFontAttributeName:[UIFont fontWithName:@"Helvetica-Bold" size:15.0f]}];
         }
-        NSLog(@"|%@|", node.content);
+        // else returning plain text
         return [[NSAttributedString alloc] initWithString:node.content
                                                attributes:@{NSFontAttributeName:[UIFont fontWithName:@"Helvetica" size:15.0f]}];
     }
     else
     {
+        // checking if node has children. If yes than go deeper
         if ([node hasChildren])
         {
             for (TFHppleElement *subNode in node.children)
@@ -171,6 +168,7 @@
     return resultString;
 }
 
+// creating TextView with size of input text
 - (UITextView *)createTextViewWithText: (NSMutableAttributedString *) string
 {
     UITextView *textBlock = [[UITextView alloc] initWithFrame:CGRectMake(0, _yOffset, _scrollView.frame.size.width, 10)];

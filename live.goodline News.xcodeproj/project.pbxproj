@@ -20,7 +20,7 @@
 		84B713ED1AF9BF0800F15562 /* live_goodline_NewsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B713EC1AF9BF0800F15562 /* live_goodline_NewsTests.m */; };
 		84B713FF1AF9DC9D00F15562 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B713FE1AF9DC9D00F15562 /* libxml2.dylib */; };
 		96EBBDAB91868A85F08E4842 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DAFFE5A525E95AA237059C8B /* libPods.a */; };
-		E1A00B491AFF5EFF0008E075 /* Default-568h_2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A00B481AFF5EFF0008E075 /* Default-568h_2x.png */; };
+		E1A00B491AFF5EFF0008E075 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A00B481AFF5EFF0008E075 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,7 +57,7 @@
 		84B713FE1AF9DC9D00F15562 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		D08A50A468C7DAE42EB71213 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		DAFFE5A525E95AA237059C8B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		E1A00B481AFF5EFF0008E075 /* Default-568h_2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h_2x.png"; sourceTree = SOURCE_ROOT; };
+		E1A00B481AFF5EFF0008E075 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = SOURCE_ROOT; };
 		F99ABF61B3DC540A4E5A55E5 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -202,7 +202,7 @@
 		84B714001AF9DDD500F15562 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				E1A00B481AFF5EFF0008E075 /* Default-568h_2x.png */,
+				E1A00B481AFF5EFF0008E075 /* Default-568h@2x.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -298,7 +298,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1A00B491AFF5EFF0008E075 /* Default-568h_2x.png in Resources */,
+				E1A00B491AFF5EFF0008E075 /* Default-568h@2x.png in Resources */,
 				84A015C01AFB1DAC0036A9CE /* CustomCell.xib in Resources */,
 				84A015AD1AF9E17E0036A9CE /* NewsListTableView.xib in Resources */,
 				84B713DE1AF9BF0800F15562 /* Images.xcassets in Resources */,

@@ -43,6 +43,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor clearColor];
     _scrollView.scrollEnabled = TRUE;
     
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:212/255.0 green:139/255.0 blue:23/255.0 alpha:1.0];
@@ -54,16 +55,8 @@
     [[_scrollView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     _yOffset = 0;
     
-    UITextView *textBlock = [[UITextView alloc] init];
-    textBlock.editable = false;
-    textBlock.scrollEnabled = false;
+    UITextView *textBlock = [self createTextViewWithText:_postTitle];
     [_scrollView addSubview:textBlock];
-    textBlock.text = _postTitle;
-    // geting the size of the content
-    CGSize size = [textBlock systemLayoutSizeFittingSize:textBlock.contentSize];
-    CGRect textRect = CGRectMake(0, _yOffset, _scrollView.frame.size.width, size.height);
-    textBlock.frame = textRect;
-    _yOffset += size.height;
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
@@ -109,22 +102,9 @@
         [str appendString:tempString];
 
     }
-    UITextView *textBlock = [[UITextView alloc] init];
-    //str = [str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    textBlock.text = str;
-    textBlock.userInteractionEnabled = FALSE;
-    NSLog(@"WHOLE TEXTORINO: ===================================== %@", str);
-    textBlock.editable = FALSE;
-    textBlock.scrollEnabled = FALSE;
-    // geting the size of the content
-    CGSize size = [textBlock systemLayoutSizeFittingSize:textBlock.contentSize];
-    NSLog(@"W: %f, H: %f", size.width, size.height);
-    CGRect textRect = CGRectMake(0, _yOffset, _scrollView.frame.size.width, size.height);
-    //CGRect textRect = CGRectMake(0, _yOffset, _scrollView.frame.size.width, 500);
-    textBlock.frame = textRect;
-    _yOffset += size.height;
+    UITextView *textBlock = [self createTextViewWithText:str];
     [_scrollView addSubview:textBlock];
-    _scrollView.contentSize = CGSizeMake(self.view.frame.size.width, _yOffset*2);
+    _scrollView.contentSize = CGSizeMake(self.view.frame.size.width, _yOffset);
 
     //NSLog(@"%@",str);
     _textView.text = str;
@@ -134,6 +114,9 @@
 - (NSString *)goDeepAndFindContent:(TFHppleElement *)node
 {
 
+    NSLog(@"Parent : %@", node.parent.tagName);
+    NSLog(@"Current: %@", node.tagName);
+    
     NSString *resultString = @"";
     if ([node.tagName isEqual:@"img"])
     {
@@ -142,17 +125,44 @@
     }
     else if ([node isTextNode])
     {
+        if ([node.parent.tagName characterAtIndex:0] == 'h')
+        {
+            return [NSString stringWithFormat:@"%@\n", node.content];
+        }
+        NSLog(@"|%@|", node.content);
         return node.content;
     }
     else
     {
         if ([node hasChildren])
         {
-            resultString = [self goDeepAndFindContent: [node firstChild]];
+            for (TFHppleElement *subNode in node.children)
+            {
+                if (![subNode.tagName isEqual:@"img"])
+                    resultString = [resultString stringByAppendingString:[self goDeepAndFindContent: subNode]];
+            }
         }
     }
     
     return resultString;
+}
+
+- (UITextView *)createTextViewWithText: (NSString *) string
+{
+    UITextView *textBlock = [[UITextView alloc] initWithFrame:CGRectMake(0, _yOffset, _scrollView.frame.size.width, 10)];
+    textBlock.text = string;
+    textBlock.userInteractionEnabled = FALSE;
+    textBlock.editable = FALSE;
+    textBlock.scrollEnabled = FALSE;
+    textBlock.backgroundColor = [UIColor colorWithRed:86/255.0 green:207/255.0 blue:82/255.0 alpha:1.0];
+    
+    // geting the size of the content
+    CGSize size = [textBlock systemLayoutSizeFittingSize:textBlock.contentSize];
+    CGRect textRect = CGRectMake(0, _yOffset, _scrollView.frame.size.width, size.height);
+    textBlock.frame = textRect;
+    _yOffset += size.height;
+    
+    return textBlock;
 }
 
 - (IBAction)back

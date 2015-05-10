@@ -48,10 +48,8 @@
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     [manager GET:@"http://live.goodline.info/guest" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
-         //NSLog(@"RESPONCE: %@", responseObject);
          [self parser:responseObject];
-         //NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-         //NSLog(@"%@", string);
+
      }
          failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {

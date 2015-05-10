@@ -41,7 +41,7 @@
     //[self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init]
     //                                              forBarMetrics:UIBarMetricsDefault];
     //self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
-    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:212/255.0 green:139/255.0 blue:23/255.0 alpha:1.0];
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:248/255.0 green:159/255.0 blue:48/255.0 alpha:1.0];
     
     // getting information from the page for the first time
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];

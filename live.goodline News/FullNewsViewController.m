@@ -8,6 +8,7 @@
 
 #import "FullNewsViewController.h"
 #import "AFNetworking.h"
+#import "UIImageView+AFNetworking.h"
 #import "TFHpple.h"
 
 @interface FullNewsViewController ()
@@ -26,7 +27,7 @@
     
     if (self)
     {
-        UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back"
+        UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Назад"
                                                                               style:UIBarButtonItemStyleDone
                                                                              target:self
                                                                              action:@selector(back)];
@@ -46,7 +47,7 @@
     self.view.backgroundColor = [UIColor clearColor];
     _scrollView.scrollEnabled = TRUE;
     
-    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:212/255.0 green:139/255.0 blue:23/255.0 alpha:1.0];
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:248/255.0 green:159/255.0 blue:48/255.0 alpha:1.0];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -54,8 +55,9 @@
     // cleaning up scrolViews subviews
     [[_scrollView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     _yOffset = 0;
-    
-    UITextView *textBlock = [self createTextViewWithText:_postTitle];
+    NSMutableAttributedString *atrString = [[NSMutableAttributedString alloc] initWithString:_postTitle
+                                                                    attributes:@{NSFontAttributeName:[UIFont fontWithName:@"Helvetica-Bold" size:20.0f]}];
+    UITextView *textBlock = [self createTextViewWithText:atrString];
     [_scrollView addSubview:textBlock];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -90,47 +92,69 @@
     NSArray *postNodes = [parser searchWithXPathQuery:XpathString];
     TFHppleElement *postNode = postNodes[0];
 
-    NSMutableString *str = [NSMutableString stringWithString:@""];
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@""];
     for (TFHppleElement *i in postNode.children)
     {
-        //NSLog(@"%@", i.content);
-        NSString *tempString = @"";
-        tempString = [self goDeepAndFindContent:i];
+        // handling image
+        if ([i.tagName isEqual:@"img"])
+        {
+            // at first setting accumulated text
+            if (![str isEqual:@""])
+            {
+                UITextView *textBlock = [self createTextViewWithText:str];
+                [_scrollView addSubview:textBlock];
+                _scrollView.contentSize = CGSizeMake(self.view.frame.size.width, _yOffset);
+                
+                str = [[NSMutableAttributedString alloc] initWithString:@""];
+            }
+            
+            // then setting imageView
+            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, _yOffset, _scrollView.frame.size.width-10, _scrollView.frame.size.width*9/16)];
+            imageView.contentMode = UIViewContentModeScaleAspectFit;
+            [imageView setImageWithURL:[NSURL URLWithString:[i objectForKey:@"src"]]];
+            
+            [_scrollView addSubview:imageView];
+            _yOffset += imageView.frame.size.height;
+        }
+        else
+        {
+            NSAttributedString *tempString = [[NSAttributedString alloc] initWithString:@""];
+            tempString = [self goDeepAndFindContent:i];
 
-        tempString = [tempString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        //[str appendString:[[self goDeepAndFindContent:i] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
-        [str appendString:tempString];
-
+            //tempString = [tempString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+            [str appendAttributedString:tempString];
+        }
     }
-    UITextView *textBlock = [self createTextViewWithText:str];
-    [_scrollView addSubview:textBlock];
-    _scrollView.contentSize = CGSizeMake(self.view.frame.size.width, _yOffset);
+    
+    // appending last block of text
+    if (![str isEqual:@""])
+    {
+        UITextView *textBlock = [self createTextViewWithText:str];
+        [_scrollView addSubview:textBlock];
+        _scrollView.contentSize = CGSizeMake(self.view.frame.size.width, _yOffset);
+    }
 
-    //NSLog(@"%@",str);
-    _textView.text = str;
     
 }
 
-- (NSString *)goDeepAndFindContent:(TFHppleElement *)node
+- (NSAttributedString *)goDeepAndFindContent:(TFHppleElement *)node
 {
 
     NSLog(@"Parent : %@", node.parent.tagName);
     NSLog(@"Current: %@", node.tagName);
     
-    NSString *resultString = @"";
-    if ([node.tagName isEqual:@"img"])
-    {
-        resultString = @"AN IMAGE HERE!!!";
-        return resultString;
-    }
-    else if ([node isTextNode])
+    NSMutableAttributedString *resultString = [[NSMutableAttributedString alloc] initWithString:@""];
+    //NSString *resultString = @"";
+    if ([node isTextNode])
     {
         if ([node.parent.tagName characterAtIndex:0] == 'h')
         {
-            return [NSString stringWithFormat:@"%@\n", node.content];
+            return [[NSAttributedString alloc] initWithString: [NSString stringWithFormat:@"%@\n", node.content]
+                                                   attributes:@{NSFontAttributeName:[UIFont fontWithName:@"Helvetica-Bold" size:15.0f]}];
         }
         NSLog(@"|%@|", node.content);
-        return node.content;
+        return [[NSAttributedString alloc] initWithString:node.content
+                                               attributes:@{NSFontAttributeName:[UIFont fontWithName:@"Helvetica" size:15.0f]}];
     }
     else
     {
@@ -139,7 +163,7 @@
             for (TFHppleElement *subNode in node.children)
             {
                 if (![subNode.tagName isEqual:@"img"])
-                    resultString = [resultString stringByAppendingString:[self goDeepAndFindContent: subNode]];
+                    [resultString appendAttributedString:[self goDeepAndFindContent: subNode]];
             }
         }
     }
@@ -147,10 +171,10 @@
     return resultString;
 }
 
-- (UITextView *)createTextViewWithText: (NSString *) string
+- (UITextView *)createTextViewWithText: (NSMutableAttributedString *) string
 {
     UITextView *textBlock = [[UITextView alloc] initWithFrame:CGRectMake(0, _yOffset, _scrollView.frame.size.width, 10)];
-    textBlock.text = string;
+    textBlock.attributedText = string;
     textBlock.userInteractionEnabled = FALSE;
     textBlock.editable = FALSE;
     textBlock.scrollEnabled = FALSE;

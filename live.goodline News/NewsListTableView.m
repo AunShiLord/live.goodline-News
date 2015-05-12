@@ -161,6 +161,7 @@
         cell.imageBlock.image = [UIImage imageNamed:@"goodline_default.jpg"];
     cell.subLabel.text = [[_posts[indexPath.row] timePosted] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
+    
     return cell;
 }
 

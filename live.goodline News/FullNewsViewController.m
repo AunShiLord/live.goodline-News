@@ -57,6 +57,8 @@
     _yOffset = 0;
     NSMutableAttributedString *atrString = [[NSMutableAttributedString alloc] initWithString:_postTitle
                                                                     attributes:@{NSFontAttributeName:[UIFont fontWithName:@"Helvetica-Bold" size:20.0f]}];
+    [_scrollView setContentOffset:CGPointMake(0, 0)];
+    
     UITextView *textBlock = [self createTextViewWithText:atrString];
     [_scrollView addSubview:textBlock];
     
@@ -132,6 +134,7 @@
         [_scrollView addSubview:textBlock];
         _scrollView.contentSize = CGSizeMake(self.view.frame.size.width, _yOffset);
     }
+    [_scrollView setContentOffset:CGPointMake(0, -self.navigationController.navigationBar.frame.size.height-20)];
     
 }
 

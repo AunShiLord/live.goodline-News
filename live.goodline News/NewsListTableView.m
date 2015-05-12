@@ -112,7 +112,11 @@
         
         // getting a link to preview image
         TFHppleElement *imageNode = [[[postNode firstChildWithClassName:@"preview"] firstChildWithTagName:@"a"] firstChildWithTagName:@"img"];
-        post.linkToPreview = [imageNode objectForKey:@"src"];
+        if (imageNode)
+        {
+            post.linkToPreview = [imageNode objectForKey:@"src"];
+        }
+
         
         [_posts addObject:post];
         
@@ -151,7 +155,10 @@
         cell = [nib objectAtIndex:0];
     }
     cell.mainLabel.text = [_posts[indexPath.row] title];
-    [cell.imageBlock setImageWithURL: [NSURL URLWithString:[_posts[indexPath.row] linkToPreview]]];
+    if ([_posts[indexPath.row] linkToPreview])
+        [cell.imageBlock setImageWithURL: [NSURL URLWithString:[_posts[indexPath.row] linkToPreview]]];
+    else
+        cell.imageBlock.image = [UIImage imageNamed:@"goodline_default.jpg"];
     cell.subLabel.text = [[_posts[indexPath.row] timePosted] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
     return cell;

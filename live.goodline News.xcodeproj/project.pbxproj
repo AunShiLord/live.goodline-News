@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		849063571B01EEA70031EAE9 /* goodline_default.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 849063561B01EEA70031EAE9 /* goodline_default.jpg */; };
 		84A015AC1AF9E17E0036A9CE /* NewsListTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A015AA1AF9E17E0036A9CE /* NewsListTableView.m */; };
 		84A015AD1AF9E17E0036A9CE /* NewsListTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84A015AB1AF9E17E0036A9CE /* NewsListTableView.xib */; };
 		84A015B11AF9EE6B0036A9CE /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A015B01AF9EE6B0036A9CE /* Post.m */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		849063561B01EEA70031EAE9 /* goodline_default.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = goodline_default.jpg; sourceTree = SOURCE_ROOT; };
 		84A015A91AF9E17E0036A9CE /* NewsListTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsListTableView.h; sourceTree = "<group>"; };
 		84A015AA1AF9E17E0036A9CE /* NewsListTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsListTableView.m; sourceTree = "<group>"; };
 		84A015AB1AF9E17E0036A9CE /* NewsListTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsListTableView.xib; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 		84B714001AF9DDD500F15562 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				849063561B01EEA70031EAE9 /* goodline_default.jpg */,
 				E1A00B481AFF5EFF0008E075 /* Default-568h@2x.png */,
 			);
 			name = Images;
@@ -302,6 +305,7 @@
 				84A015C01AFB1DAC0036A9CE /* CustomCell.xib in Resources */,
 				84A015AD1AF9E17E0036A9CE /* NewsListTableView.xib in Resources */,
 				84B713DE1AF9BF0800F15562 /* Images.xcassets in Resources */,
+				849063571B01EEA70031EAE9 /* goodline_default.jpg in Resources */,
 				84A015B61AFB090F0036A9CE /* FullNewsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

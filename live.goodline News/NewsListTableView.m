@@ -31,11 +31,13 @@
     [super viewDidLoad];
     
     self.refreshControl = [[UIRefreshControl alloc] init];
-    self.refreshControl.backgroundColor = [UIColor purpleColor];
+    self.refreshControl.backgroundColor = [UIColor greenColor];
     self.refreshControl.tintColor = [UIColor whiteColor];
     [self.refreshControl addTarget:self
                             action:@selector(getLatestNews)
                   forControlEvents:UIControlEventValueChanged];
+    //NSString *title = @"Ищу новые новости...";
+    //self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:nil];
     
     self.view.backgroundColor = [UIColor colorWithRed:86/255.0 green:207/255.0 blue:82/255.0 alpha:1.0];
     
@@ -102,6 +104,7 @@
                                                             delegate:nil
                                                    cancelButtonTitle:@"Ok"
                                                    otherButtonTitles:nil];
+         [self.refreshControl endRefreshing];
          [alertView show];
      }];
 }
@@ -129,8 +132,9 @@
         
         // getting link to the full version of the post
         post.linkToFullPost = [titleNode objectForKey:@"href"];
-        if ([post.linkToFullPost isEqual:[_posts[0] linkToFullPost]])
-             break;
+        if ([_posts count] != 0)
+            if ([post.linkToFullPost isEqual:[_posts[0] linkToFullPost]])
+                break;
         
         // getting time of the post
         post.timePosted = [[textPart firstChildWithClassName:@"topic-header"] firstChildWithTagName:@"time"].text;
@@ -146,10 +150,11 @@
         [newNews addObject:post];
         
     }
-    for (Post *i in _posts)
-        [newNews addObject:i];
+    //if (_posts)
+        for (Post *i in _posts)
+            [newNews addObject:i];
         
-    [newNews arrayByAddingObjectsFromArray:_posts];
+    //[newNews arrayByAddingObjectsFromArray:_posts];
     _posts = newNews;
     
     [self.tableView reloadData];
@@ -230,7 +235,7 @@
     }
     cell.mainLabel.text = [_posts[indexPath.row] title];
     if ([_posts[indexPath.row] linkToPreview])
-        [cell.imageBlock setImageWithURL: [NSURL URLWithString:[_posts[indexPath.row] linkToPreview]]];
+        [cell.imageBlock setImageWithURL: [NSURL URLWithString:[_posts[indexPath.row] linkToPreview]] placeholderImage:[UIImage imageNamed:@"goodline_default.jpg"]];
     else
         cell.imageBlock.image = [UIImage imageNamed:@"goodline_default.jpg"];
     cell.subLabel.text = [[_posts[indexPath.row] timePosted] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];

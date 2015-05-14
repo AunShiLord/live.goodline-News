@@ -63,6 +63,11 @@
     UITextView *textBlock = [self createTextViewWithText:atrString];
     [_scrollView addSubview:textBlock];
     
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    spinner.frame = CGRectMake(self.view.frame.size.width/2, self.view.frame.size.height/2, 24, 24);
+    [_scrollView addSubview:spinner];
+    [spinner startAnimating];
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     [manager GET:_linkToFullPost parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
@@ -79,6 +84,7 @@
                                                    otherButtonTitles:nil];
          [alertView show];
      }];
+    [spinner stopAnimating];
 
 }
 

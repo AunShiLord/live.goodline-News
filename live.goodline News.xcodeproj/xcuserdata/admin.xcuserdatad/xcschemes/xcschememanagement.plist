@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Last news widget.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
 		<key>live.goodline News.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -12,6 +17,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>849063861B0481720031EAE9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>84B713CC1AF9BF0800F15562</key>
 		<dict>
 			<key>primary</key>

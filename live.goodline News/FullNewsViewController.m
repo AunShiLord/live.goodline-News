@@ -48,6 +48,7 @@
     _scrollView.scrollEnabled = TRUE;
     
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:248/255.0 green:159/255.0 blue:48/255.0 alpha:1.0];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -101,6 +102,7 @@
             // at first setting accumulated text
             if (![str isEqual:@""])
             {
+                //(void) (^showViewInScrollView)(parameterTypes) = ^returnType(parameters) {...};
                 UITextView *textBlock = [self createTextViewWithText:str];
                 [_scrollView addSubview:textBlock];
                 _scrollView.contentSize = CGSizeMake(self.view.frame.size.width, _yOffset);

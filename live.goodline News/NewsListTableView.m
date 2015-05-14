@@ -30,6 +30,13 @@
 {
     [super viewDidLoad];
     
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.backgroundColor = [UIColor purpleColor];
+    self.refreshControl.tintColor = [UIColor whiteColor];
+    [self.refreshControl addTarget:self
+                            action:@selector(getLatestNews)
+                  forControlEvents:UIControlEventValueChanged];
+    
     self.view.backgroundColor = [UIColor colorWithRed:86/255.0 green:207/255.0 blue:82/255.0 alpha:1.0];
     
     self.tableView.delegate = self;
@@ -77,9 +84,77 @@
     return self;
 }
 
-- (void)viewWillAppear:(BOOL)animated
+// pull to refresh
+- (void) getLatestNews
 {
-    [super viewWillAppear:animated];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager GET:@"http://live.goodline.info/guest" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         [self pullToRefreshParser:responseObject];
+         
+     }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         [self.refreshControl endRefreshing];
+         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error retrieving info"
+                                                             message:[error localizedDescription]
+                                                            delegate:nil
+                                                   cancelButtonTitle:@"Ok"
+                                                   otherButtonTitles:nil];
+         [alertView show];
+     }];
+}
+
+- (void) pullToRefreshParser:(NSData *)responseData
+{
+    // creating parser and setting Xpath for it.
+    TFHpple *parser = [TFHpple hppleWithHTMLData:responseData];
+    
+    NSString *XpathString = @"//article[@class='topic topic-type-topic js-topic out-topic']";
+    
+    NSArray *postNodes = [parser searchWithXPathQuery:XpathString];
+    
+    NSMutableArray *newNews = [[NSMutableArray alloc] init];
+
+    for (TFHppleElement *postNode in postNodes)
+    {
+        Post *post = [[Post alloc] init];
+        
+        TFHppleElement *textPart = [postNode firstChildWithClassName:@"wraps out-topic"];
+        
+        // getting title of the post
+        TFHppleElement *titleNode = [[[textPart firstChildWithClassName:@"topic-header"] firstChildWithClassName:@"topic-title word-wrap"] firstChildWithTagName:@"a"];
+        post.title = titleNode.text;
+        
+        // getting link to the full version of the post
+        post.linkToFullPost = [titleNode objectForKey:@"href"];
+        if ([post.linkToFullPost isEqual:[_posts[0] linkToFullPost]])
+             break;
+        
+        // getting time of the post
+        post.timePosted = [[textPart firstChildWithClassName:@"topic-header"] firstChildWithTagName:@"time"].text;
+        
+        // getting a link to preview image
+        TFHppleElement *imageNode = [[[postNode firstChildWithClassName:@"preview"] firstChildWithTagName:@"a"] firstChildWithTagName:@"img"];
+        if (imageNode)
+        {
+            post.linkToPreview = [imageNode objectForKey:@"src"];
+        }
+
+        
+        [newNews addObject:post];
+        
+    }
+    for (Post *i in _posts)
+        [newNews addObject:i];
+        
+    [newNews arrayByAddingObjectsFromArray:_posts];
+    _posts = newNews;
+    
+    [self.tableView reloadData];
+    [self.refreshControl endRefreshing];
+    
 }
 
 - (void) parser:(NSData *)responseData
@@ -93,7 +168,7 @@
     NSArray *postNodes = [parser searchWithXPathQuery:XpathString];
     if (![postNodes count] == 0)
         _pageNumber += 1;
-
+    
     for (TFHppleElement *postNode in postNodes)
     {
         Post *post = [[Post alloc] init];
@@ -116,14 +191,13 @@
         {
             post.linkToPreview = [imageNode objectForKey:@"src"];
         }
-
+        
         
         [_posts addObject:post];
         
     }
     
     [self.tableView reloadData];
-    
     
 }
 

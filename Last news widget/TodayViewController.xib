@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TodayViewController">
             <connections>
+                <outlet property="previewImageView" destination="8jD-rM-dFj" id="TdQ-VN-cGQ"/>
+                <outlet property="timeLabel" destination="yRN-eA-AVb" id="GWM-sv-eea"/>
+                <outlet property="titleLabel" destination="LQS-mg-19Z" id="cP8-0X-KDh"/>
                 <outlet property="view" destination="iN0-l3-epB" id="JD1-pw-kIM"/>
             </connections>
         </placeholder>
@@ -14,7 +18,7 @@
             <rect key="frame" x="0.0" y="0.0" width="316" height="88"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LQS-mg-19Z">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LQS-mg-19Z">
                     <rect key="frame" x="96" y="0.0" width="212" height="36"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="36" id="dYL-nq-Fym"/>

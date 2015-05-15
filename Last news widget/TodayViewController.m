@@ -8,12 +8,16 @@
 #import "TodayViewController.h"
 #import <NotificationCenter/NotificationCenter.h>
 #import "TFHpple.h"
-//#import "Post.h"
+#import "Post.h"
 
 
-@interface TodayViewController () <NCWidgetProviding>
+@interface TodayViewController () <NCWidgetProviding,
+                                    NSURLConnectionDelegate>
 
 @property (strong, nonatomic) NSMutableData *htmlData;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *previewImageView;
 
 @end
 
@@ -41,7 +45,7 @@
 - (void) downloadPage
 {
     // link to Yandex Dictionary.
-    NSString *url_str = @"https://slovari.yandex.ru/~книги/Толковый словарь Даля/";
+    NSString *url_str = @"http://live.goodline.info/guest";
     
     // converting url string to Percent Escapes format
     NSURL *url = [NSURL URLWithString: url_str];
@@ -55,45 +59,43 @@
 
 - (void) parseHtml: (NSMutableData *)data
 {
-    /*
-     // creating parser and setting Xpath for it.
-     TFHpple *parser = [TFHpple hppleWithHTMLData:data];
+    // creating parser and setting Xpath for it.
+    TFHpple *parser = [TFHpple hppleWithHTMLData:data];
      
-     NSString *XpathString = @"//article[@class='topic topic-type-topic js-topic out-topic']";
+    NSString *XpathString = @"//article[@class='topic topic-type-topic js-topic out-topic']";
      
-     // getting all nodes with posts from the page
-     NSArray *postNodes = [parser searchWithXPathQuery:XpathString];
+    // getting all nodes with posts from the page
+    NSArray *postNodes = [parser searchWithXPathQuery:XpathString];
      
-     for (TFHppleElement *postNode in postNodes)
-     {
-     Post *post = [[Post alloc] init];
+    TFHppleElement *postNode = postNodes[0];
+    
+    Post *post = [[Post alloc] init];
      
-     TFHppleElement *textPart = [postNode firstChildWithClassName:@"wraps out-topic"];
+    TFHppleElement *textPart = [postNode firstChildWithClassName:@"wraps out-topic"];
      
-     // getting title of the post
-     TFHppleElement *titleNode = [[[textPart firstChildWithClassName:@"topic-header"] firstChildWithClassName:@"topic-title word-wrap"] firstChildWithTagName:@"a"];
-     post.title = titleNode.text;
+    // getting title of the post
+    TFHppleElement *titleNode = [[[textPart firstChildWithClassName:@"topic-header"] firstChildWithClassName:@"topic-title word-wrap"] firstChildWithTagName:@"a"];
+    post.title = titleNode.text;
+    self.titleLabel.text = titleNode.text;
+    
      
-     // getting link to the full version of the post
-     post.linkToFullPost = [titleNode objectForKey:@"href"];
+    // getting link to the full version of the post
+    post.linkToFullPost = [titleNode objectForKey:@"href"];
+    
+    // getting time of the post
+    post.timePosted = [[textPart firstChildWithClassName:@"topic-header"] firstChildWithTagName:@"time"].text;
+    self.timeLabel.text = [[textPart firstChildWithClassName:@"topic-header"] firstChildWithTagName:@"time"].text;
      
-     // getting time of the post
-     post.timePosted = [[textPart firstChildWithClassName:@"topic-header"] firstChildWithTagName:@"time"].text;
-     
-     // getting a link to preview image
-     TFHppleElement *imageNode = [[[postNode firstChildWithClassName:@"preview"] firstChildWithTagName:@"a"] firstChildWithTagName:@"img"];
-     if (imageNode)
-     {
-     post.linkToPreview = [imageNode objectForKey:@"src"];
-     }
-     
-     
-     [_posts addObject:post];
-     
-     }
-     
-     [self.tableView reloadData];
-     */
+    // getting a link to preview image
+    TFHppleElement *imageNode = [[[postNode firstChildWithClassName:@"preview"] firstChildWithTagName:@"a"] firstChildWithTagName:@"img"];
+    
+    if (imageNode)
+    {
+        UIImage* image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString: [imageNode objectForKey:@"src"]]]];
+        post.linkToPreview = [imageNode objectForKey:@"src"];
+        self.previewImageView.image = image;
+    }
+    
 }
 
 - (void)widgetPerformUpdateWithCompletionHandler:(void (^)(NCUpdateResult))completionHandler {

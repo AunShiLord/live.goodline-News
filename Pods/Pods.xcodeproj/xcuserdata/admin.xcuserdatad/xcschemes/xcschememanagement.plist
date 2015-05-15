@@ -4,41 +4,55 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-AFNetworking.xcscheme</key>
+		<key>Pods-Last news widget-hpple.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>2</integer>
 		</dict>
-		<key>Pods-hpple.xcscheme</key>
+		<key>Pods-Last news widget.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>3</integer>
 		</dict>
-		<key>Pods.xcscheme</key>
+		<key>Pods-live.goodline News-AFNetworking.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>1</integer>
+		</dict>
+		<key>Pods-live.goodline News-hpple.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-live.goodline News.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>48EA42D26C714831964D3A22</key>
+		<key>37438EA43A76972098AB3969</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B9C1D3266CFB1BB63D392837</key>
+		<key>59C9AC91076EB173EAA12471</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D643E583B9BA216CA8717A1E</key>
+		<key>8CF1F57F331D6CBA63B817D2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>98520AA5A4E2556D908989DD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E0F61693C9E30235490C9925</key>
 		<dict>
 			<key>primary</key>
 			<true/>

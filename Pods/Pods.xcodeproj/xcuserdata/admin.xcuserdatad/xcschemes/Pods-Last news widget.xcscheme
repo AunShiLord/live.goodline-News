@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "48EA42D26C714831964D3A22"
-               BuildableName = "libPods-hpple.a"
-               BlueprintName = "Pods-hpple"
+               BlueprintIdentifier = "E0F61693C9E30235490C9925"
+               BuildableName = "libPods-Last news widget.a"
+               BlueprintName = "Pods-Last news widget"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

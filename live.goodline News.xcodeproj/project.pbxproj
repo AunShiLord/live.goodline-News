@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		842550E51B0599860028B5B0 /* goodline_default.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 842550E41B0599860028B5B0 /* goodline_default.jpg */; };
 		849063571B01EEA70031EAE9 /* goodline_default.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 849063561B01EEA70031EAE9 /* goodline_default.jpg */; };
 		849063891B0481720031EAE9 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 849063881B0481720031EAE9 /* NotificationCenter.framework */; };
 		8490638F1B0481720031EAE9 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8490638E1B0481720031EAE9 /* TodayViewController.m */; };
@@ -60,6 +61,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		842550E41B0599860028B5B0 /* goodline_default.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = goodline_default.jpg; sourceTree = SOURCE_ROOT; };
 		849063561B01EEA70031EAE9 /* goodline_default.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = goodline_default.jpg; sourceTree = SOURCE_ROOT; };
 		849063871B0481720031EAE9 /* Last news widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Last news widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		849063881B0481720031EAE9 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
@@ -145,6 +147,7 @@
 		8490638B1B0481720031EAE9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				842550E41B0599860028B5B0 /* goodline_default.jpg */,
 				8490638C1B0481720031EAE9 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -385,6 +388,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				842550E51B0599860028B5B0 /* goodline_default.jpg in Resources */,
 				8490639E1B04B5FC0031EAE9 /* TodayViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -664,6 +668,7 @@
 				849063961B0481720031EAE9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		84B713C81AF9BF0800F15562 /* Build configuration list for PBXProject "live.goodline News" */ = {
 			isa = XCConfigurationList;

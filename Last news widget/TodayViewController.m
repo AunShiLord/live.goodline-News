@@ -20,11 +20,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     //self.preferredContentSize = CGSizeMake([[UIScreen mainScreen] bounds].size.width, 88);
-    self.preferredContentSize = CGSizeMake(100, 100);
+    //self.preferredContentSize = CGSizeMake(50, 50);
     
-    _view1 = [[UIView alloc] init];
+    //_widgetView = [[UIView alloc] init];
     
-    [self.view addSubview:_view1];
+    //[self.view addSubview:_widgetView];
     
 }
 

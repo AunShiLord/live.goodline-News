@@ -23,8 +23,15 @@
 
 @implementation TodayViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
+    
+    UITapGestureRecognizer *singleFingerTap =
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(handleSingleTap:)];
+    
+    [self.view addGestureRecognizer:singleFingerTap];
     // Do any additional setup after loading the view from its nib.
     //self.preferredContentSize = CGSizeMake([[UIScreen mainScreen] bounds].size.width, 88);
     //self.preferredContentSize = CGSizeMake(50, 50);
@@ -40,6 +47,12 @@
      */
     
     [self downloadPage];
+}
+
+- (void)handleSingleTap:(UITapGestureRecognizer *)recognizer
+{
+    NSURL *pjURL = [NSURL URLWithString:@"AppUrlType://live.goodline News"];
+    [self.extensionContext openURL:pjURL completionHandler:nil];
 }
 
 - (void) downloadPage

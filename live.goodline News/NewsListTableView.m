@@ -256,7 +256,10 @@
 
 -(void) openLastNews
 {
-    [self getLatestNews];
+    //[self getLatestNews];
+    
+    NSData *data = [[NSData alloc] initWithContentsOfURL:[[NSURL alloc] initWithString:@"http://live.goodline.info/guest"]];
+    [self parser:data];
     
     if ([_posts count] > 0)
     {

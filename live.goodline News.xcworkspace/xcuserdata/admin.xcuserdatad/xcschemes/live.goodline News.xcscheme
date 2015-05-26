@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "0630"
-   version = "2.0">
+   version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
@@ -20,20 +20,6 @@
                ReferencedContainer = "container:live.goodline News.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "84B713E51AF9BF0800F15562"
-               BuildableName = "live.goodline NewsTests.xctest"
-               BlueprintName = "live.goodline NewsTests"
-               ReferencedContainer = "container:live.goodline News.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -42,16 +28,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "84B713E51AF9BF0800F15562"
-               BuildableName = "live.goodline NewsTests.xctest"
-               BlueprintName = "live.goodline NewsTests"
-               ReferencedContainer = "container:live.goodline News.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
@@ -71,13 +47,9 @@
       buildConfiguration = "Debug"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
-      allowLocationSimulation = "YES"
-      launchAutomaticallySubstyle = "2">
-      <PathRunnable
-         runnableDebuggingMode = "0"
-         FilePath = "/Users/admin/Library/Developer/Xcode/DerivedData/live.goodline_News-augjaafmtegsnmhakxdhtvplgzdz/Build/Products/live.goodline News">
-      </PathRunnable>
-      <MacroExpansion>
+      allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "84B713CC1AF9BF0800F15562"
@@ -85,7 +57,7 @@
             BlueprintName = "live.goodline News"
             ReferencedContainer = "container:live.goodline News.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

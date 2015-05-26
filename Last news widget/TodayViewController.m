@@ -51,7 +51,7 @@
 
 - (void)handleSingleTap:(UITapGestureRecognizer *)recognizer
 {
-    NSURL *pjURL = [NSURL URLWithString:@"AppUrlType://live.goodline News"];
+    NSURL *pjURL = [NSURL URLWithString:@"AppUrlType://home/"];
     [self.extensionContext openURL:pjURL completionHandler:nil];
 }
 

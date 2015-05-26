@@ -10,4 +10,6 @@
 
 @interface NewsListTableView : UITableViewController
 
+-(void) openLastNews;
+
 @end

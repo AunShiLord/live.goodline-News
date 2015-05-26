@@ -223,11 +223,11 @@
     return 88;
 }
 
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     
     static NSString *cellIdentifier = @"Cell";
-    CustomCell *cell = (CustomCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    CustomCell *cell = (CustomCell *)[self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
 
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CustomCell"owner:self options:nil];
@@ -252,6 +252,21 @@
     _fullNewsViewController.postTitle = [_posts[indexPath.row] title];
     [self presentViewController:_fullNewsNavigationController animated:YES completion:nil];
     
+}
+
+-(void) openLastNews
+{
+    [self getLatestNews];
+    
+    if ([_posts count] > 0)
+    {
+        _fullNewsViewController.linkToFullPost = [_posts[0] linkToFullPost];
+        _fullNewsViewController.postTitle = [_posts[0] title];
+        [self presentViewController:_fullNewsNavigationController animated:YES completion:nil];
+        NSLog(@"YA SDELYAL'");
+    }
+    else
+        NSLog(@"AZAZAZA");
 }
 
 -(void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath

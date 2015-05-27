@@ -267,8 +267,8 @@
         NSData *data = [[NSData alloc] initWithContentsOfURL:[[NSURL alloc] initWithString:@"http://live.goodline.info/guest"]];
         [self parser:data];
     }
-    _fullNewsViewController.linkToFullPost = [_posts[1] linkToFullPost];
-    _fullNewsViewController.postTitle = [_posts[1] title];
+    _fullNewsViewController.linkToFullPost = [_posts[0] linkToFullPost];
+    _fullNewsViewController.postTitle = [_posts[0] title];
     [self presentViewController:_fullNewsNavigationController animated:YES completion:nil];
 
 }

@@ -257,19 +257,20 @@
 -(void) openLastNews
 {
     //[self getLatestNews];
-    
+    /*
     NSData *data = [[NSData alloc] initWithContentsOfURL:[[NSURL alloc] initWithString:@"http://live.goodline.info/guest"]];
     [self parser:data];
+     */
     
-    if ([_posts count] > 0)
+    if (![_posts count] > 0)
     {
-        _fullNewsViewController.linkToFullPost = [_posts[0] linkToFullPost];
-        _fullNewsViewController.postTitle = [_posts[0] title];
-        [self presentViewController:_fullNewsNavigationController animated:YES completion:nil];
-        NSLog(@"YA SDELYAL'");
+        NSData *data = [[NSData alloc] initWithContentsOfURL:[[NSURL alloc] initWithString:@"http://live.goodline.info/guest"]];
+        [self parser:data];
     }
-    else
-        NSLog(@"AZAZAZA");
+    _fullNewsViewController.linkToFullPost = [_posts[1] linkToFullPost];
+    _fullNewsViewController.postTitle = [_posts[1] title];
+    [self presentViewController:_fullNewsNavigationController animated:YES completion:nil];
+
 }
 
 -(void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath

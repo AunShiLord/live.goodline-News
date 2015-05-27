@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+@class NewsListTableView;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+
+@property (strong, nonatomic) NewsListTableView *newsListTableView;
 
 
 @end

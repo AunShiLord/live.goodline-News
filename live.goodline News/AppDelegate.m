@@ -20,8 +20,8 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     //NewsListViewController *newsList = [[NewsListViewController alloc] init];
-    NewsListTableView *newsList = [[NewsListTableView alloc] init];
-    UINavigationController *newListNavigationController = [[UINavigationController alloc] initWithRootViewController:newsList];
+    self.newsListTableView = [[NewsListTableView alloc] init];
+    UINavigationController *newListNavigationController = [[UINavigationController alloc] initWithRootViewController:self.newsListTableView];
     
     self.window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-568h_2x.png"]];
     [self.window makeKeyAndVisible];
@@ -33,13 +33,13 @@
 
 -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-    NewsListTableView *mainViewController = [[NewsListTableView alloc] initWithNibName:@"NewsListTableView" bundle:nil];
+   // NewsListTableView *mainViewController = [[NewsListTableView alloc] initWithNibName:@"NewsListTableView" bundle:nil];
     
     
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:mainViewController];
-    self.window.rootViewController = navigationController;
+    //UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:mainViewController];
+    //self.window.rootViewController = navigationController;
     
-    [mainViewController openLastNews];
+    [self.newsListTableView openLastNews];
     
     return YES;
 }

@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *previewImageView;
+@property (strong, nonatomic) IBOutlet UIView *tapView;
 
 @end
 
@@ -31,7 +32,7 @@
     [[UITapGestureRecognizer alloc] initWithTarget:self
                                             action:@selector(handleSingleTap:)];
     
-    [self.view addGestureRecognizer:singleFingerTap];
+    [self.tapView addGestureRecognizer:singleFingerTap];
     // Do any additional setup after loading the view from its nib.
     //self.preferredContentSize = CGSizeMake([[UIScreen mainScreen] bounds].size.width, 88);
     //self.preferredContentSize = CGSizeMake(50, 50);

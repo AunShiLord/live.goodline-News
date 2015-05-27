@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TodayViewController">
             <connections>
                 <outlet property="previewImageView" destination="8jD-rM-dFj" id="TdQ-VN-cGQ"/>
+                <outlet property="tapView" destination="cgz-Mr-oX2" id="eGb-Ee-x4k"/>
                 <outlet property="timeLabel" destination="yRN-eA-AVb" id="GWM-sv-eea"/>
                 <outlet property="titleLabel" destination="LQS-mg-19Z" id="cP8-0X-KDh"/>
                 <outlet property="view" destination="iN0-l3-epB" id="JD1-pw-kIM"/>
@@ -27,6 +28,15 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yRN-eA-AVb">
+                    <rect key="frame" x="96" y="59" width="212" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cgz-Mr-oX2" userLabel="tapView">
+                    <rect key="frame" x="0.0" y="0.0" width="316" height="88"/>
+                </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="goodline_default.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="8jD-rM-dFj">
                     <rect key="frame" x="0.0" y="0.0" width="88" height="88"/>
                     <constraints>
@@ -34,12 +44,6 @@
                         <constraint firstAttribute="height" constant="88" id="odR-H8-z7P"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yRN-eA-AVb">
-                    <rect key="frame" x="96" y="59" width="212" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <constraints>
                 <constraint firstItem="LQS-mg-19Z" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="2XD-f5-0st"/>

@@ -62,17 +62,15 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-//    NSIndexPath
-//    [self.collectionView cellForItemAtIndexPath:<#(NSIndexPath *)#>
+    // unzooming every image.
+    // pretty stupid way to unzoom every cell
+    for (int i=0; i<[self.imageViewArray count]; i++)
+    {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+        CustomGalleryCell *cell = (CustomGalleryCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
+        
+        [cell.scrollView setZoomScale:1.0 animated:YES];
+    }
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

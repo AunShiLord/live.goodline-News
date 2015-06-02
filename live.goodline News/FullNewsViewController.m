@@ -128,6 +128,7 @@
             // additionoly adding gesture recognizer to each imageView
             UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageViewTapGesture:)];
             [imageView addGestureRecognizer:tapGesture];
+            imageView.autoresizingMask = [self setAutoresizing];
             
             [self.imageViewArray addObject:imageView];
             
@@ -154,6 +155,12 @@
     }
     [_scrollView setContentOffset:CGPointMake(0, -self.navigationController.navigationBar.frame.size.height-20)];
     
+}
+
+- (UIViewAutoresizing) setAutoresizing
+{
+    return (UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin |
+            UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth);
 }
 
 // Go deep in nodes and find text content

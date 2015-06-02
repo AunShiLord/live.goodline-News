@@ -7,6 +7,7 @@
 //
 
 #import "FullNewsViewController.h"
+#import "NewsImageGalleryViewController.h"
 #import "AFNetworking.h"
 #import "UIImageView+AFNetworking.h"
 #import "TFHpple.h"
@@ -15,8 +16,11 @@
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (strong, nonatomic) NSMutableArray *imageViewArray;
 // y position of very last element in scrollView
 @property int yOffset;
+
+@property (strong, nonatomic) NewsImageGalleryViewController *newsImageGalleryViewController;
 
 @end
 
@@ -28,13 +32,6 @@
     
     if (self)
     {
-        UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Назад"
-                                                                              style:UIBarButtonItemStyleDone
-                                                                             target:self
-                                                                             action:@selector(back)];
-
-        leftBarButtonItem.tintColor = [UIColor blackColor];
-        [self.navigationItem setLeftBarButtonItem:leftBarButtonItem];
         
     }
     
@@ -46,6 +43,8 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithRed:86/255.0 green:207/255.0 blue:82/255.0 alpha:1.0];
     _scrollView.scrollEnabled = TRUE;
+    
+    self.imageViewArray = [[NSMutableArray alloc] init];
     
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:248/255.0 green:159/255.0 blue:48/255.0 alpha:1.0];
     
@@ -62,6 +61,8 @@
     
     UITextView *textBlock = [self createTextViewWithText:atrString];
     [_scrollView addSubview:textBlock];
+    
+    [self.imageViewArray removeAllObjects];
     
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     spinner.frame = CGRectMake(self.view.frame.size.width/2, self.view.frame.size.height/2, 24, 24);
@@ -94,7 +95,7 @@
     TFHpple *parser = [TFHpple hppleWithHTMLData:data];
     
     NSString *XpathString = @"//div[@class='topic-content text']";
-    
+    int tag = 0;
     // getting a post message
     NSArray *postNodes = [parser searchWithXPathQuery:XpathString];
     TFHppleElement *postNode = postNodes[0];
@@ -120,6 +121,15 @@
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, _yOffset, _scrollView.frame.size.width-10, _scrollView.frame.size.width*9/16)];
             imageView.contentMode = UIViewContentModeScaleAspectFit;
             [imageView setImageWithURL:[NSURL URLWithString:[i objectForKey:@"src"]]];
+            imageView.userInteractionEnabled = YES;
+            imageView.tag = tag;
+            tag++;
+            
+            // additionoly adding gesture recognizer to each imageView
+            UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageViewTapGesture:)];
+            [imageView addGestureRecognizer:tapGesture];
+            
+            [self.imageViewArray addObject:imageView];
             
             [_scrollView addSubview:imageView];
             _yOffset += imageView.frame.size.height;
@@ -198,9 +208,13 @@
     return textBlock;
 }
 
-- (IBAction)back
+- (void)imageViewTapGesture: (UITapGestureRecognizer *) gestureRecognizer
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    self.newsImageGalleryViewController = nil;
+    self.newsImageGalleryViewController = [[NewsImageGalleryViewController alloc] init];
+    self.newsImageGalleryViewController.imageViewArray = self.imageViewArray;
+    self.newsImageGalleryViewController.currentCell = (int)gestureRecognizer.view.tag;
+    [self.navigationController pushViewController:self.newsImageGalleryViewController animated:YES];
 }
 
 /*

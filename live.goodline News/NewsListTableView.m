@@ -19,7 +19,7 @@
 
 @property (strong, nonatomic) NSMutableArray *posts;
 @property (strong, nonatomic) FullNewsViewController *fullNewsViewController;
-@property (strong, nonatomic) UINavigationController *fullNewsNavigationController;
+//@property (strong, nonatomic) UINavigationController *fullNewsNavigationController;
 @property int pageNumber;
 
 @end
@@ -78,7 +78,7 @@
         _posts = [[NSMutableArray alloc] init];
         
         _fullNewsViewController = [[FullNewsViewController alloc] init];
-        _fullNewsNavigationController = [[UINavigationController alloc] initWithRootViewController:_fullNewsViewController];
+        //_fullNewsNavigationController = [[UINavigationController alloc] initWithRootViewController:_fullNewsViewController];
         
         _pageNumber = 0;
     }
@@ -250,7 +250,8 @@
     // setting link to full post
     _fullNewsViewController.linkToFullPost = [_posts[indexPath.row] linkToFullPost];
     _fullNewsViewController.postTitle = [_posts[indexPath.row] title];
-    [self presentViewController:_fullNewsNavigationController animated:YES completion:nil];
+    [self.navigationController pushViewController:_fullNewsViewController animated:YES];
+    //[self presentViewController:_fullNewsNavigationController animated:YES completion:nil];
     
 }
 
@@ -269,7 +270,7 @@
     }
     _fullNewsViewController.linkToFullPost = [_posts[0] linkToFullPost];
     _fullNewsViewController.postTitle = [_posts[0] title];
-    [self presentViewController:_fullNewsNavigationController animated:YES completion:nil];
+    [self.navigationController pushViewController: _fullNewsViewController animated:YES];
 
 }
 

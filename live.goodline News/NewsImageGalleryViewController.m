@@ -13,6 +13,8 @@
                                                 UICollectionViewDataSource,
                                                 UIScrollViewDelegate>
 
+@property (strong, nonatomic) NSIndexPath *indexPath;
+
 @end
 
 @implementation NewsImageGalleryViewController
@@ -31,13 +33,19 @@
     
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.currentCell inSection:0];
     
-    [self.collectionView scrollToItemAtIndexPath: indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
+    [self.collectionView scrollToItemAtIndexPath: indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];    
+    
+    // rotation notification
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(orientationChanged:)
+                                                 name:UIDeviceOrientationDidChangeNotification
+                                               object:nil];
 }
 
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(self.view.frame.size.width, self.view.frame.size.height-100);
+    return CGSizeMake(self.view.frame.size.width, self.view.frame.size.height-50);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -60,6 +68,43 @@
     return 1;
 }
 
+- (void)orientationChanged:(NSNotification *)notification
+{
+    [self adjustViewsForOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
+}
+
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    _indexPath = indexPath;
+}
+
+- (void) adjustViewsForOrientation:(UIInterfaceOrientation) orientation
+{
+    [self.collectionView reloadData];
+    
+    [self.collectionView scrollToItemAtIndexPath: _indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
+    /*
+    switch (orientation)
+    {
+        case UIInterfaceOrientationPortrait:
+        case UIInterfaceOrientationPortraitUpsideDown:
+        {
+
+        }
+            
+            break;
+        case UIInterfaceOrientationLandscapeLeft:
+        case UIInterfaceOrientationLandscapeRight:
+        {
+ 
+        }
+            break;
+        case UIInterfaceOrientationUnknown:break;
+    }
+     */
+}
+
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     // unzooming every image.
@@ -71,6 +116,11 @@
         
         [cell.scrollView setZoomScale:1.0 animated:YES];
     }
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
 }
 
 @end

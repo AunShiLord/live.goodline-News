@@ -57,7 +57,7 @@
     _yOffset = 0;
     NSMutableAttributedString *atrString = [[NSMutableAttributedString alloc] initWithString:_postTitle
                                                                     attributes:@{NSFontAttributeName:[UIFont fontWithName:@"Helvetica-Bold" size:20.0f]}];
-    [_scrollView setContentOffset:CGPointMake(0, 0)];
+    [_scrollView setContentOffset:CGPointMake(0, 0)];    
     
     UITextView *textBlock = [self createTextViewWithText:atrString];
     [_scrollView addSubview:textBlock];
@@ -210,6 +210,7 @@
     CGSize size = [textBlock systemLayoutSizeFittingSize:textBlock.contentSize];
     CGRect textRect = CGRectMake(0, _yOffset, _scrollView.frame.size.width, size.height);
     textBlock.frame = textRect;
+    textBlock.autoresizingMask = [self setAutoresizing];
     _yOffset += size.height;
     
     return textBlock;

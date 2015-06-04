@@ -19,12 +19,14 @@
 
 @property (strong, nonatomic) NSMutableArray *posts;
 @property (strong, nonatomic) FullNewsViewController *fullNewsViewController;
-//@property (strong, nonatomic) UINavigationController *fullNewsNavigationController;
+
 @property int pageNumber;
 
 @end
 
 @implementation NewsListTableView
+
+static NSString *const goodlineLink = @"http://live.goodline.info/guest";
 
 - (void)viewDidLoad
 {
@@ -36,8 +38,6 @@
     [self.refreshControl addTarget:self
                             action:@selector(getLatestNews)
                   forControlEvents:UIControlEventValueChanged];
-    //NSString *title = @"Ищу новые новости...";
-    //self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:nil];
     
     self.view.backgroundColor = [UIColor colorWithRed:86/255.0 green:207/255.0 blue:82/255.0 alpha:1.0];
     
@@ -51,7 +51,7 @@
     // getting information from the page for the first time
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    [manager GET:@"http://live.goodline.info/guest" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
+    [manager GET:goodlineLink parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          [self parser:responseObject];
 
@@ -78,7 +78,6 @@
         _posts = [[NSMutableArray alloc] init];
         
         _fullNewsViewController = [[FullNewsViewController alloc] init];
-        //_fullNewsNavigationController = [[UINavigationController alloc] initWithRootViewController:_fullNewsViewController];
         
         _pageNumber = 0;
     }
@@ -91,7 +90,7 @@
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    [manager GET:@"http://live.goodline.info/guest" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
+    [manager GET:goodlineLink parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          [self pullToRefreshParser:responseObject];
          
@@ -150,11 +149,9 @@
         [newNews addObject:post];
         
     }
-    //if (_posts)
-        for (Post *i in _posts)
-            [newNews addObject:i];
-        
-    //[newNews arrayByAddingObjectsFromArray:_posts];
+    for (Post *i in _posts)
+        [newNews addObject:i];
+    
     _posts = newNews;
     
     [self.tableView reloadData];
@@ -257,12 +254,6 @@
 
 -(void) openLastNews
 {
-    //[self getLatestNews];
-    /*
-    NSData *data = [[NSData alloc] initWithContentsOfURL:[[NSURL alloc] initWithString:@"http://live.goodline.info/guest"]];
-    [self parser:data];
-     */
-    
     if (![_posts count] > 0)
     {
         NSData *data = [[NSData alloc] initWithContentsOfURL:[[NSURL alloc] initWithString:@"http://live.goodline.info/guest"]];
@@ -283,7 +274,7 @@
     {
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-        [manager GET:[NSString stringWithFormat:@"http://live.goodline.info/guest/page%ld", (long)(_pageNumber+1)] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
+        [manager GET:[NSString stringWithFormat:@"%@/page%ld",goodlineLink, (long)(_pageNumber+1)] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
          {
              [self parser:responseObject];
          }

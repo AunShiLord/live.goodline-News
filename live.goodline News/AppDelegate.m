@@ -33,12 +33,6 @@
 
 -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-   // NewsListTableView *mainViewController = [[NewsListTableView alloc] initWithNibName:@"NewsListTableView" bundle:nil];
-    
-    
-    //UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:mainViewController];
-    //self.window.rootViewController = navigationController;
-    
     [self.newsListTableView openLastNews];
     
     return YES;

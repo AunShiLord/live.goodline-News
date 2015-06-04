@@ -83,25 +83,7 @@
     [self.collectionView reloadData];
     
     [self.collectionView scrollToItemAtIndexPath: _indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
-    /*
-    switch (orientation)
-    {
-        case UIInterfaceOrientationPortrait:
-        case UIInterfaceOrientationPortraitUpsideDown:
-        {
 
-        }
-            
-            break;
-        case UIInterfaceOrientationLandscapeLeft:
-        case UIInterfaceOrientationLandscapeRight:
-        {
- 
-        }
-            break;
-        case UIInterfaceOrientationUnknown:break;
-    }
-     */
 }
 
 

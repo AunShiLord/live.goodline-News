@@ -9,11 +9,14 @@
 #import "NewsImageGalleryViewController.h"
 #import "CustomGalleryCell.h"
 
+#import <math.h>
+
+
 @interface NewsImageGalleryViewController () <UICollectionViewDelegate,
                                                 UICollectionViewDataSource,
                                                 UIScrollViewDelegate>
 
-@property (strong, nonatomic) NSIndexPath *indexPath;
+//@property (strong, nonatomic) NSIndexPath *indexPath;
 
 @end
 
@@ -73,31 +76,30 @@
     [self adjustViewsForOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
 }
 
-- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    _indexPath = indexPath;
-}
-
 - (void) adjustViewsForOrientation:(UIInterfaceOrientation) orientation
 {
     [self.collectionView reloadData];
     
-    [self.collectionView scrollToItemAtIndexPath: _indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.currentCell inSection:0];
+    
+    [self.collectionView scrollToItemAtIndexPath: indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
 
 }
 
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    // unzooming every image.
-    // pretty stupid way to unzoom every cell
-    for (int i=0; i<[self.imageViewArray count]; i++)
+    // unzooming prev picture
+
+    // finding out if scrollView have reached next cell
+    if (fmodf(scrollView.contentOffset.x, self.view.frame.size.width) == 0)
     {
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.currentCell inSection:0];
         CustomGalleryCell *cell = (CustomGalleryCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
-        
-        [cell.scrollView setZoomScale:1.0 animated:YES];
+        [cell setZoomScale:1.0 animated:YES];
+        self.currentCell = (int)(scrollView.contentOffset.x/self.view.frame.size.width);
     }
+
 }
 
 -(void)viewDidDisappear:(BOOL)animated

@@ -39,7 +39,7 @@
 
 - (void)handleSingleTap:(UITapGestureRecognizer *)recognizer
 {
-    NSURL *pjURL = [NSURL URLWithString:@"AppUrlType://home/"];
+    NSURL *pjURL = [NSURL URLWithString:@"goodLineNews://home/"];
     [self.extensionContext openURL:pjURL completionHandler:nil];
 }
 

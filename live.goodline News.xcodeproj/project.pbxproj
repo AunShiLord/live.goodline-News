@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		38492BC19DFD232B7F9C71E4 /* libPods-live.goodline News.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1167E2A00FBC1B544AC51C45 /* libPods-live.goodline News.a */; };
+		842024CB1B203D8000499882 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A015B01AF9EE6B0036A9CE /* Post.m */; };
 		842550E51B0599860028B5B0 /* goodline_default.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 842550E41B0599860028B5B0 /* goodline_default.jpg */; };
-		842550E81B05DE770028B5B0 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 842550E71B05DE770028B5B0 /* Post.m */; };
 		849063571B01EEA70031EAE9 /* goodline_default.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 849063561B01EEA70031EAE9 /* goodline_default.jpg */; };
 		849063891B0481720031EAE9 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 849063881B0481720031EAE9 /* NotificationCenter.framework */; };
 		8490638F1B0481720031EAE9 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8490638E1B0481720031EAE9 /* TodayViewController.m */; };
@@ -71,8 +71,6 @@
 		1167E2A00FBC1B544AC51C45 /* libPods-live.goodline News.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-live.goodline News.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		456A3E07A2DE28C07165A900 /* Pods-live.goodline News.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-live.goodline News.debug.xcconfig"; path = "Pods/Target Support Files/Pods-live.goodline News/Pods-live.goodline News.debug.xcconfig"; sourceTree = "<group>"; };
 		842550E41B0599860028B5B0 /* goodline_default.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = goodline_default.jpg; sourceTree = SOURCE_ROOT; };
-		842550E61B05DE770028B5B0 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
-		842550E71B05DE770028B5B0 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		849063561B01EEA70031EAE9 /* goodline_default.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = goodline_default.jpg; sourceTree = SOURCE_ROOT; };
 		849063871B0481720031EAE9 /* Last news widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Last news widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		849063881B0481720031EAE9 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
@@ -156,19 +154,9 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		842550E91B05DE7C0028B5B0 /* Data Model */ = {
-			isa = PBXGroup;
-			children = (
-				842550E61B05DE770028B5B0 /* Post.h */,
-				842550E71B05DE770028B5B0 /* Post.m */,
-			);
-			name = "Data Model";
-			sourceTree = "<group>";
-		};
 		8490638A1B0481720031EAE9 /* Last news widget */ = {
 			isa = PBXGroup;
 			children = (
-				842550E91B05DE7C0028B5B0 /* Data Model */,
 				8490638D1B0481720031EAE9 /* TodayViewController.h */,
 				8490638E1B0481720031EAE9 /* TodayViewController.m */,
 				8490639D1B04B5FC0031EAE9 /* TodayViewController.xib */,
@@ -544,8 +532,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				842024CB1B203D8000499882 /* Post.m in Sources */,
 				8490638F1B0481720031EAE9 /* TodayViewController.m in Sources */,
-				842550E81B05DE770028B5B0 /* Post.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

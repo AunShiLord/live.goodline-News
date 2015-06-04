@@ -15,6 +15,11 @@
     // Initialization code
 }
 
+- (void)setZoomScale: (CGFloat)scale animated:(BOOL)animated
+{
+    [self.scrollView setZoomScale:scale animated:animated];
+}
+
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
     return self.imageView;

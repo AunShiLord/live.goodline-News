@@ -13,4 +13,6 @@
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 
+- (void)setZoomScale: (CGFloat)scale animated:(BOOL)animated;
+
 @end

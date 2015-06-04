@@ -13,6 +13,7 @@
 #import "FullNewsViewController.h"
 #import "CustomCell.h"
 #import "UIImageView+AFNetworking.h"
+#import "DataParser.h"
 
 @interface NewsListTableView ()<UITableViewDelegate,
                                 UITableViewDataSource>
@@ -51,9 +52,11 @@ static NSString *const goodlineLink = @"http://live.goodline.info/guest";
     // getting information from the page for the first time
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    [manager GET:goodlineLink parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
+    [manager GET:[NSString stringWithFormat:@"%@/page%d", goodlineLink, 1] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
-         [self parser:responseObject];
+         [DataParser parseData:responseObject inArray:_posts];
+         _pageNumber += 1;
+         [self.tableView reloadData];
 
      }
          failure:^(AFHTTPRequestOperation *operation, NSError *error)
@@ -79,7 +82,7 @@ static NSString *const goodlineLink = @"http://live.goodline.info/guest";
         
         _fullNewsViewController = [[FullNewsViewController alloc] init];
         
-        _pageNumber = 0;
+        _pageNumber = 1;
     }
     
     return self;
@@ -159,50 +162,6 @@ static NSString *const goodlineLink = @"http://live.goodline.info/guest";
     
 }
 
-- (void) parser:(NSData *)responseData
-{
-    // creating parser and setting Xpath for it.
-    TFHpple *parser = [TFHpple hppleWithHTMLData:responseData];
-    
-    NSString *XpathString = @"//article[@class='topic topic-type-topic js-topic out-topic']";
-    
-    // getting all nodes with posts from the page
-    NSArray *postNodes = [parser searchWithXPathQuery:XpathString];
-    if (![postNodes count] == 0)
-        _pageNumber += 1;
-    
-    for (TFHppleElement *postNode in postNodes)
-    {
-        Post *post = [[Post alloc] init];
-        
-        TFHppleElement *textPart = [postNode firstChildWithClassName:@"wraps out-topic"];
-        
-        // getting title of the post
-        TFHppleElement *titleNode = [[[textPart firstChildWithClassName:@"topic-header"] firstChildWithClassName:@"topic-title word-wrap"] firstChildWithTagName:@"a"];
-        post.title = titleNode.text;
-        
-        // getting link to the full version of the post
-        post.linkToFullPost = [titleNode objectForKey:@"href"];
-        
-        // getting time of the post
-        post.timePosted = [[textPart firstChildWithClassName:@"topic-header"] firstChildWithTagName:@"time"].text;
-        
-        // getting a link to preview image
-        TFHppleElement *imageNode = [[[postNode firstChildWithClassName:@"preview"] firstChildWithTagName:@"a"] firstChildWithTagName:@"img"];
-        if (imageNode)
-        {
-            post.linkToPreview = [imageNode objectForKey:@"src"];
-        }
-        
-        
-        [_posts addObject:post];
-        
-    }
-    
-    [self.tableView reloadData];
-    
-}
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -256,8 +215,8 @@ static NSString *const goodlineLink = @"http://live.goodline.info/guest";
 {
     if (![_posts count] > 0)
     {
-        NSData *data = [[NSData alloc] initWithContentsOfURL:[[NSURL alloc] initWithString:@"http://live.goodline.info/guest"]];
-        [self parser:data];
+        NSData *data = [[NSData alloc] initWithContentsOfURL:[[NSURL alloc] initWithString:goodlineLink]];
+        [DataParser parseData:data inArray:_posts];
     }
     _fullNewsViewController.linkToFullPost = [_posts[0] linkToFullPost];
     _fullNewsViewController.postTitle = [_posts[0] title];
@@ -267,16 +226,24 @@ static NSString *const goodlineLink = @"http://live.goodline.info/guest";
 
 -(void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // issue when dragin to the VERY last cell
     
     NSInteger totalRow = [tableView numberOfRowsInSection:indexPath.section];//first get total rows in that section by current indexPath.
     if(indexPath.row == totalRow -1)
     {
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-        [manager GET:[NSString stringWithFormat:@"%@/page%ld",goodlineLink, (long)(_pageNumber+1)] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
+        [manager GET:[NSString stringWithFormat:@"%@/page%ld",goodlineLink, (long)(_pageNumber)] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
          {
-             [self parser:responseObject];
+             int oldNewsCount = (int)[_posts count];
+             [DataParser parseData:responseObject inArray:_posts];
+             
+             if (oldNewsCount != [_posts count])
+             {
+                 _pageNumber += 1;
+             }
+             
+             [self.tableView reloadData];
+             
          }
              failure:^(AFHTTPRequestOperation *operation, NSError *error)
          {

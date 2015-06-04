@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		38492BC19DFD232B7F9C71E4 /* libPods-live.goodline News.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1167E2A00FBC1B544AC51C45 /* libPods-live.goodline News.a */; };
 		842024CB1B203D8000499882 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A015B01AF9EE6B0036A9CE /* Post.m */; };
+		842024D01B2050E700499882 /* DataParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 842024CF1B2050E700499882 /* DataParser.m */; };
 		842550E51B0599860028B5B0 /* goodline_default.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 842550E41B0599860028B5B0 /* goodline_default.jpg */; };
 		849063571B01EEA70031EAE9 /* goodline_default.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 849063561B01EEA70031EAE9 /* goodline_default.jpg */; };
 		849063891B0481720031EAE9 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 849063881B0481720031EAE9 /* NotificationCenter.framework */; };
@@ -70,6 +71,8 @@
 /* Begin PBXFileReference section */
 		1167E2A00FBC1B544AC51C45 /* libPods-live.goodline News.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-live.goodline News.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		456A3E07A2DE28C07165A900 /* Pods-live.goodline News.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-live.goodline News.debug.xcconfig"; path = "Pods/Target Support Files/Pods-live.goodline News/Pods-live.goodline News.debug.xcconfig"; sourceTree = "<group>"; };
+		842024CE1B2050E700499882 /* DataParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataParser.h; sourceTree = "<group>"; };
+		842024CF1B2050E700499882 /* DataParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataParser.m; sourceTree = "<group>"; };
 		842550E41B0599860028B5B0 /* goodline_default.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = goodline_default.jpg; sourceTree = SOURCE_ROOT; };
 		849063561B01EEA70031EAE9 /* goodline_default.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = goodline_default.jpg; sourceTree = SOURCE_ROOT; };
 		849063871B0481720031EAE9 /* Last news widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Last news widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,6 +157,24 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		842024CC1B20509A00499882 /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				84A015AF1AF9EE6B0036A9CE /* Post.h */,
+				84A015B01AF9EE6B0036A9CE /* Post.m */,
+			);
+			name = Post;
+			sourceTree = "<group>";
+		};
+		842024D11B2050EF00499882 /* DataParser */ = {
+			isa = PBXGroup;
+			children = (
+				842024CE1B2050E700499882 /* DataParser.h */,
+				842024CF1B2050E700499882 /* DataParser.m */,
+			);
+			name = DataParser;
+			sourceTree = "<group>";
+		};
 		8490638A1B0481720031EAE9 /* Last news widget */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,8 +198,8 @@
 		84A015AE1AF9EE300036A9CE /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
-				84A015AF1AF9EE6B0036A9CE /* Post.h */,
-				84A015B01AF9EE6B0036A9CE /* Post.m */,
+				842024CC1B20509A00499882 /* Post */,
+				842024D11B2050EF00499882 /* DataParser */,
 			);
 			name = "Data Model";
 			sourceTree = "<group>";
@@ -545,6 +566,7 @@
 				84C00EC01B1D7C770059EE03 /* CustomGalleryCell.m in Sources */,
 				84A015AC1AF9E17E0036A9CE /* NewsListTableView.m in Sources */,
 				84B713D31AF9BF0800F15562 /* main.m in Sources */,
+				842024D01B2050E700499882 /* DataParser.m in Sources */,
 				84A015B51AFB090F0036A9CE /* FullNewsViewController.m in Sources */,
 				84A015BF1AFB1DAC0036A9CE /* CustomCell.m in Sources */,
 				84C00EBA1B1D7C390059EE03 /* NewsImageGalleryViewController.m in Sources */,

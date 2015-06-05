@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TodayViewController">
             <connections>
                 <outlet property="previewImageView" destination="8jD-rM-dFj" id="TdQ-VN-cGQ"/>
                 <outlet property="tapView" destination="cgz-Mr-oX2" id="eGb-Ee-x4k"/>
-                <outlet property="timeLabel" destination="yRN-eA-AVb" id="GWM-sv-eea"/>
                 <outlet property="titleLabel" destination="LQS-mg-19Z" id="cP8-0X-KDh"/>
                 <outlet property="view" destination="iN0-l3-epB" id="JD1-pw-kIM"/>
             </connections>
@@ -31,12 +30,6 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yRN-eA-AVb">
-                    <rect key="frame" x="96" y="59" width="212" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="goodline_default.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="8jD-rM-dFj">
                     <rect key="frame" x="0.0" y="0.0" width="88" height="88"/>
                     <constraints>
@@ -47,14 +40,10 @@
             </subviews>
             <constraints>
                 <constraint firstItem="LQS-mg-19Z" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="2XD-f5-0st"/>
-                <constraint firstItem="yRN-eA-AVb" firstAttribute="top" secondItem="LQS-mg-19Z" secondAttribute="bottom" constant="23" id="5jx-oi-784"/>
-                <constraint firstAttribute="trailing" secondItem="yRN-eA-AVb" secondAttribute="trailing" constant="8" id="Ah6-Ni-cCP"/>
                 <constraint firstItem="8jD-rM-dFj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="E17-67-mxE"/>
                 <constraint firstAttribute="trailing" secondItem="LQS-mg-19Z" secondAttribute="trailing" constant="8" id="EOh-7l-LcY"/>
                 <constraint firstItem="8jD-rM-dFj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="SgV-95-tyR"/>
                 <constraint firstItem="LQS-mg-19Z" firstAttribute="leading" secondItem="8jD-rM-dFj" secondAttribute="trailing" constant="8" id="Vup-XL-Qdm"/>
-                <constraint firstAttribute="bottom" secondItem="yRN-eA-AVb" secondAttribute="bottom" constant="8" id="YNH-qb-hw6"/>
-                <constraint firstItem="yRN-eA-AVb" firstAttribute="leading" secondItem="8jD-rM-dFj" secondAttribute="trailing" constant="8" id="fT2-dE-GmH"/>
                 <constraint firstAttribute="bottom" secondItem="8jD-rM-dFj" secondAttribute="bottom" id="hTa-9e-u6U"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>

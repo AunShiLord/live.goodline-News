@@ -9,6 +9,7 @@
 #import <NotificationCenter/NotificationCenter.h>
 #import "TFHpple.h"
 #import "Post.h"
+#import "DataParser.h"
 
 
 @interface TodayViewController () <NCWidgetProviding,
@@ -16,7 +17,6 @@
 
 @property (strong, nonatomic) NSMutableData *htmlData;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *previewImageView;
 @property (strong, nonatomic) IBOutlet UIView *tapView;
 
@@ -58,47 +58,6 @@
     [connection start];
 }
 
-- (void) parseHtml: (NSMutableData *)data
-{
-    // creating parser and setting Xpath for it.
-    TFHpple *parser = [TFHpple hppleWithHTMLData:data];
-     
-    NSString *XpathString = @"//article[@class='topic topic-type-topic js-topic out-topic']";
-     
-    // getting all nodes with posts from the page
-    NSArray *postNodes = [parser searchWithXPathQuery:XpathString];
-     
-    TFHppleElement *postNode = postNodes[0];
-    
-    Post *post = [[Post alloc] init];
-     
-    TFHppleElement *textPart = [postNode firstChildWithClassName:@"wraps out-topic"];
-     
-    // getting title of the post
-    TFHppleElement *titleNode = [[[textPart firstChildWithClassName:@"topic-header"] firstChildWithClassName:@"topic-title word-wrap"] firstChildWithTagName:@"a"];
-    post.title = titleNode.text;
-    self.titleLabel.text = titleNode.text;
-    
-     
-    // getting link to the full version of the post
-    post.linkToFullPost = [titleNode objectForKey:@"href"];
-    
-    // getting time of the post
-    post.timePosted = [[textPart firstChildWithClassName:@"topic-header"] firstChildWithTagName:@"time"].text;
-    self.timeLabel.text = [[textPart firstChildWithClassName:@"topic-header"] firstChildWithTagName:@"time"].text;
-     
-    // getting a link to preview image
-    TFHppleElement *imageNode = [[[postNode firstChildWithClassName:@"preview"] firstChildWithTagName:@"a"] firstChildWithTagName:@"img"];
-    
-    if (imageNode)
-    {
-        UIImage* image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString: [imageNode objectForKey:@"src"]]]];
-        post.linkToPreview = [imageNode objectForKey:@"src"];
-        self.previewImageView.image = image;
-    }
-    
-}
-
 - (void)widgetPerformUpdateWithCompletionHandler:(void (^)(NCUpdateResult))completionHandler {
     // Perform any setup necessary in order to update the view.
     
@@ -133,9 +92,17 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    // The request is complete and data has been received
-    // You can parse the stuff in your instance variable now
-    [self parseHtml:self.htmlData];
+    // parse data
+    NSMutableArray *arr = [[NSMutableArray alloc] init];
+    [DataParser parseData:self.htmlData inArray:arr];
+    
+    // getting first element
+    Post *firstPost = arr[0];
+    self.titleLabel.text = firstPost.title;
+    
+    UIImage* image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString: firstPost.linkToPreview]]];
+    self.previewImageView.image = image;
+    
     
 }
 

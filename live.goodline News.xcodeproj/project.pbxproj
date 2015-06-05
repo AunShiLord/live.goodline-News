@@ -33,6 +33,7 @@
 		84C00EC01B1D7C770059EE03 /* CustomGalleryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C00EBE1B1D7C770059EE03 /* CustomGalleryCell.m */; };
 		84C00EC11B1D7C770059EE03 /* CustomGalleryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84C00EBF1B1D7C770059EE03 /* CustomGalleryCell.xib */; };
 		96EBBDAB91868A85F08E4842 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DAFFE5A525E95AA237059C8B /* libPods.a */; };
+		E19E18071B2145DB00DEEC42 /* DataParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 842024CF1B2050E700499882 /* DataParser.m */; };
 		E1A00B491AFF5EFF0008E075 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A00B481AFF5EFF0008E075 /* Default-568h@2x.png */; };
 		F562B14E386A9AE24E086DD6 /* libPods-Last news widget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C0CB5A6163B004DAD9660449 /* libPods-Last news widget.a */; };
 /* End PBXBuildFile section */
@@ -553,6 +554,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E19E18071B2145DB00DEEC42 /* DataParser.m in Sources */,
 				842024CB1B203D8000499882 /* Post.m in Sources */,
 				8490638F1B0481720031EAE9 /* TodayViewController.m in Sources */,
 			);
